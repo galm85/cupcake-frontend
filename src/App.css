@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Lobster&family=Poppins:wght@300;400;700;900&display=swap');
 *{
   padding: 0;
   margin: 0;
@@ -5,16 +6,28 @@
 }
 
 :root{
+  /* colors */
   --purpel:#620080;
   --pink:#fa9aca;
   --orange:#f99d6c;
   --cyan:#22f2f4;
   --text:#011c50;
+
+  /* fonst */
+  --main-font:'Poppins', sans-serif;
+  --spacial-font:'Lobster', cursive;
+
+  /* font weihgt */
+  --light:300;
+  --normal:400;
+  --bold:700;
+  --black:700;
 }
 
 
 /* css files */
 @import './styles/navbar.css';
+@import './styles/sidenav.css';
 
 
 

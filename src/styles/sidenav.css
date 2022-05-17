@@ -1,0 +1,48 @@
+.sidenav{
+    width: 100%;
+    height: 100%;
+    background-color: var(--orange);
+    
+}
+
+.sidenav-header{
+    padding: 10px 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+.sidenav-header h2{
+    font-family: var(--spacial-font);
+    font-size: 35px;
+    color: var(--purpel);
+}
+
+
+.sidenav-links{
+    display: flex;
+    flex-direction: column;
+
+   
+}
+
+.sidenav-link{
+    display: flex;
+    align-items: center;
+    padding: 0 20px;
+    width: 100%;
+    height: 50px;
+    color: var(--purpel);
+    text-decoration: none;
+    font-family: var(--main-font);
+    font-weight: var(--bold);
+    transition: all ease 0.2s;  
+}
+
+
+.sidenav-link:hover{
+    color:var(--orange);
+    background-color: var(--purpel);
+}

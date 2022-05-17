@@ -11,12 +11,15 @@ function App() {
 
   return (
     <div className="app">
+      
       <Drawer anchor='left' open={menuOpen} onClose={()=>setMenuOpen(false)}>
         <Sidenav/>
       </Drawer>
+
       <header>
         <Navbar setMenuOpen={setMenuOpen}/>
       </header>
+      
       <main>main</main>
       <footer>Footer</footer>
     </div>
