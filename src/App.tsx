@@ -1,24 +1,24 @@
+import { Drawer } from '@mui/material';
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
 
+// components
+import {Navbar,Sidenav} from './components/index';
+
 function App() {
+
+  const [menuOpen,setMenuOpen] = React.useState(false);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+    <div className="app">
+      <Drawer anchor='left' open={menuOpen} onClose={()=>setMenuOpen(false)}>
+        <Sidenav/>
+      </Drawer>
+      <header>
+        <Navbar setMenuOpen={setMenuOpen}/>
       </header>
+      <main>main</main>
+      <footer>Footer</footer>
     </div>
   );
 }
