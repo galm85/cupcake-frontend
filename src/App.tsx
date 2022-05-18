@@ -3,7 +3,8 @@ import React from 'react';
 import './App.css';
 
 // components
-import {Navbar,Sidenav} from './components/index';
+import {Navbar,Sidenav,Footer} from './components/index';
+import { HomePage } from './pages';
 
 function App() {
 
@@ -20,8 +21,12 @@ function App() {
         <Navbar setMenuOpen={setMenuOpen}/>
       </header>
       
-      <main>main</main>
-      <footer>Footer</footer>
+      <main>
+        <HomePage/>
+      </main>
+      <footer>
+        <Footer/>
+      </footer>
     </div>
   );
 }

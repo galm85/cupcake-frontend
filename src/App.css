@@ -28,11 +28,14 @@
 /* css files */
 @import './styles/navbar.css';
 @import './styles/sidenav.css';
+@import './styles/homePages.css';
 
 
 
 header{
   height: 10vh;
+  width: 100%;
+  position: static;
 }
 
 main{
@@ -41,5 +44,12 @@ main{
 
 
 footer{
-  min-height: 10vh;
+ height: 10vh;
+ width: 100%;
+}
+
+.footer{
+  width: 100%;
+  height: 100%;
+  background-color: var(--purpel);
 }
