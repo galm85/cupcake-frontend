@@ -46,9 +46,10 @@ const LoginPage:React.FC = ()=>{
             try{
                 const res = await axios.post('http://localhost:4000/users/sign-in',user);
                 setResponse('');
-                console.log(res.data.token);
+                let token:string = res.data.token;
                 alert('welcome')
-                window.location.href = './';
+                sessionStorage.setItem('cupcake',token);
+                
             }catch(error:any){
                setResponse(error.response.data.message);
             }
