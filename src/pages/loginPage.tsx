@@ -49,7 +49,7 @@ const LoginPage:React.FC = ()=>{
                 let token:string = res.data.token;
                 alert('welcome')
                 sessionStorage.setItem('cupcake',token);
-                
+                window.location.href ='./';
             }catch(error:any){
                setResponse(error.response.data.message);
             }

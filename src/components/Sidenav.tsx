@@ -1,6 +1,7 @@
 import { Divider } from '@mui/material';
 import React from 'react'
 import { NavLink } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 // icons
 import HomeIcon from '@mui/icons-material/Home';
@@ -12,9 +13,12 @@ import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import LoginIcon from '@mui/icons-material/Login';
 import LogoutIcon from '@mui/icons-material/Logout';
 import WorkIcon from '@mui/icons-material/Work';
+import { MainState } from '../redux/store';
 
 
 const Sidenav:React.FC = ()=>{
+
+    const {currentUser} = useSelector((state:MainState)=>state.usersReducer);
 
     return(
         <div className="sidenav">
@@ -29,13 +33,18 @@ const Sidenav:React.FC = ()=>{
                 <NavLink className={(navdata)=>navdata.isActive ? 'sidenav-link active': 'sidenav-link'} to='/menu'><MenuBookIcon style={{marginRight:'20px'}}/>Menu</NavLink>
                 <NavLink className={(navdata)=>navdata.isActive ? 'sidenav-link active': 'sidenav-link'} to='/about-us'><InfoIcon style={{marginRight:'20px'}}/>About Us</NavLink>
                 <NavLink className={(navdata)=>navdata.isActive ? 'sidenav-link active': 'sidenav-link'} to='/restourants'><StoreIcon style={{marginRight:'20px'}}/>Restaurants</NavLink>
+                <NavLink className={(navdata)=>navdata.isActive ? 'sidenav-link active': 'sidenav-link'} to='/jobs'><WorkIcon style={{marginRight:'20px'}}/> Jobs</NavLink>
             </div>
             <Divider style={{margin:'20px 0'}}/>
             <div className="sidenav-links">
-                <NavLink className={(navdata)=>navdata.isActive ? 'sidenav-link active': 'sidenav-link'} to='/profile'><AccountCircleIcon style={{marginRight:'20px'}}/>My Account</NavLink>
-                <NavLink className={(navdata)=>navdata.isActive ? 'sidenav-link active': 'sidenav-link'} to='/logout'><LogoutIcon style={{marginRight:'20px'}}/> Logout</NavLink>
+                {currentUser ? <>
+                    <NavLink className={(navdata)=>navdata.isActive ? 'sidenav-link active': 'sidenav-link'} to='/profile'><AccountCircleIcon style={{marginRight:'20px'}}/>My Account</NavLink>
+                    <NavLink className={(navdata)=>navdata.isActive ? 'sidenav-link active': 'sidenav-link'} to='#' onClick={()=>{sessionStorage.removeItem('cupcake');window.location.href='./'}}><LogoutIcon style={{marginRight:'20px'}}/> Logout</NavLink>
+                </>
+                :
                 <NavLink className={(navdata)=>navdata.isActive ? 'sidenav-link active': 'sidenav-link'} to='/login'><LoginIcon style={{marginRight:'20px'}}/> Login</NavLink>
-                <NavLink className={(navdata)=>navdata.isActive ? 'sidenav-link active': 'sidenav-link'} to='/jobs'><WorkIcon style={{marginRight:'20px'}}/> Jobs</NavLink>
+                
+                }
             </div>
 
         </div>
