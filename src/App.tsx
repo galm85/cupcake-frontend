@@ -1,10 +1,11 @@
 import { Drawer } from '@mui/material';
 import React from 'react';
+import { Route, Routes } from 'react-router-dom';
 import './App.css';
 
 // components
-import {Navbar,Sidenav,Footer} from './components/index';
-import { HomePage } from './pages';
+import {Navbar,Sidenav,Footer} from './components';
+import { HomePage, RegisterPage } from './pages';
 
 function App() {
 
@@ -22,7 +23,12 @@ function App() {
       </header>
       
       <main>
-        <HomePage/>
+        <Routes>
+          <Route path='/' element={<HomePage/>} />
+          <Route path='/register' element={<RegisterPage/>} />
+        
+
+        </Routes>
       </main>
       <footer>
         <Footer/>

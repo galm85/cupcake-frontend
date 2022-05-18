@@ -1,0 +1,29 @@
+
+/* General */
+
+
+
+
+
+
+
+
+/* register page */
+.register-container{
+   display: flex;
+   justify-content: center;
+   margin-top: 10vh;
+}
+
+.form-group{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.register-form{
+    border:1px solid var(--purpel);
+    padding: 20px;
+    border-radius: 20px;
+    transition: all ease 0.2s;
+}
