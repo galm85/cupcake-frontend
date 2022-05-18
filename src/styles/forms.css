@@ -1,6 +1,19 @@
 
 /* General */
 
+.form-header{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 50px;
+}
+
+.form-title{
+    font-family: var(--spacial-font);
+    color: var(--purpel);
+    text-align: center;
+    font-size: 40px;
+}
 
 
 
@@ -27,3 +40,29 @@
     border-radius: 20px;
     transition: all ease 0.2s;
 }
+
+
+/* login page */
+.login-page{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.login-form{
+    width: 700px;
+    margin: 80px auto;
+    border:3px solid var(--purpel);
+    padding: 40px 30px;
+    border-radius: 40px;
+    box-shadow: 0px 0px 5px var(--purpel);
+}
+
+
+@media only screen and (max-width: 800px) {
+   .login-form{
+       width: 90%;
+       border:1px solid var(--purpel);
+       
+   }
+  }

@@ -5,7 +5,7 @@ import './App.css';
 
 // components
 import {Navbar,Sidenav,Footer} from './components';
-import { HomePage, RegisterPage } from './pages';
+import { HomePage, LoginPage, RegisterPage } from './pages';
 
 function App() {
 
@@ -26,6 +26,7 @@ function App() {
         <Routes>
           <Route path='/' element={<HomePage/>} />
           <Route path='/register' element={<RegisterPage/>} />
+          <Route path='/login' element={<LoginPage/>} />
         
 
         </Routes>

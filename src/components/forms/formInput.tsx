@@ -16,6 +16,7 @@ const FormInput:React.FC<Props> = ({name,label,variant='standard',type='text',er
 
     return(
         <TextField  
+            style={{margin:'10px 0'}}
             fullWidth 
             variant={variant} 
             name={name} 

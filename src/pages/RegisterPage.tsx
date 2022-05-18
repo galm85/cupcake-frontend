@@ -3,6 +3,7 @@ import axios from 'axios';
 import React, { FormEvent } from 'react'
 import FormInput from '../components/forms/formInput';
 import { User } from '../utils/types';
+import {Link} from 'react-router-dom';
 
 
 type UserErrors = {
@@ -97,14 +98,16 @@ const RegisterPage:React.FC = ()=>{
        
            <Grid container className="register-container" >
 
-                <Grid item xs={12} style={{display:'flex',flexDirection:'column',justifyContent:'center',alignItems:'center'}}>
-                    <img src="./images/cupcake-logo.png" alt="cupcake logo" width="50px" />
-                    <h1 style={{textAlign:'center'}}>Login</h1>
-                </Grid>
+                
 
 
                <Grid item xs={11} sm={10}  md={6}  lg={6}>
                     <form className='register-form' onSubmit={handleSubmit}>
+
+                        <div className='form-header'>
+                            <img src="./images/cupcake-logo.png" alt="cupcake logo" width="50px" />
+                            <h1 className='form-title'>Login</h1>
+                        </div>
                         
                         <Grid container className='form-group'>
                             <Grid item xs={12} md={5}>
@@ -169,6 +172,9 @@ const RegisterPage:React.FC = ()=>{
                         </Grid>
 
                     </form>
+                    <div style={{textAlign:'center'}}>
+                <Link to='/login'>Already have an account?</Link>
+            </div>
                </Grid>
            </Grid>
             
