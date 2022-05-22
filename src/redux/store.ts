@@ -4,7 +4,9 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 
 
 // reducers
+import {settingReducer} from './reducers/settingReducer';
 import {usersReducer} from './reducers/usersReducer';
+import {categoriesReducer} from './reducers/categoriesReducer';
 
 export type MainState = {
     usersReducer:any
@@ -15,7 +17,9 @@ const initialState={};
 
 
 const rootReducer = combineReducers({
+    settingReducer,
     usersReducer,
+    categoriesReducer,
 })
 
 

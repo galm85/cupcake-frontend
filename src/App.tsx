@@ -2,15 +2,18 @@ import { Drawer } from '@mui/material';
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 import './App.css';
+import { useSelector } from 'react-redux';
 
 // components
-import {Navbar,Sidenav,Footer} from './components';
-import { HomePage, LoginPage, RegisterPage } from './pages';
+import {Navbar,Sidenav,Footer,Loading} from './components';
+import { CupcakePage, HomePage, LoginPage, RegisterPage } from './pages';
+import { Dashboard } from './admin';
+import { State } from './utils/types';
 
 function App() {
 
-  const [menuOpen,setMenuOpen] = React.useState(false);
-
+  const [menuOpen,setMenuOpen] = React.useState<boolean>(false);
+  const {loading} = useSelector((state:State)=>state.settingReducer);
   return (
     <div className="app">
       
@@ -20,6 +23,8 @@ function App() {
 
       <header>
         <Navbar setMenuOpen={setMenuOpen}/>
+        {loading && <Loading  /> }
+        
       </header>
       
       <main>
@@ -27,7 +32,11 @@ function App() {
           <Route path='/' element={<HomePage/>} />
           <Route path='/register' element={<RegisterPage/>} />
           <Route path='/login' element={<LoginPage/>} />
-        
+          <Route path='/cupcakes' element={<CupcakePage />} />
+          
+          
+          <Route path='/admin/*' element={<Dashboard />} />
+          
 
         </Routes>
       </main>

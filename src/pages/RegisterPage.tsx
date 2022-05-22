@@ -87,7 +87,7 @@ const RegisterPage:React.FC = ()=>{
             }
             
             const res = await axios.post(`http://localhost:4000/users/register`,data);
-            console.log(res);
+            
             alert(res.data.message);
         }
     }

@@ -2,6 +2,7 @@ import { Divider } from '@mui/material';
 import React from 'react'
 import { NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import { MainState } from '../redux/store';
 
 // icons
 import HomeIcon from '@mui/icons-material/Home';
@@ -13,7 +14,7 @@ import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import LoginIcon from '@mui/icons-material/Login';
 import LogoutIcon from '@mui/icons-material/Logout';
 import WorkIcon from '@mui/icons-material/Work';
-import { MainState } from '../redux/store';
+import AdminPanelSettingsIcon from '@mui/icons-material/AdminPanelSettings';
 
 
 const Sidenav:React.FC = ()=>{
@@ -38,6 +39,7 @@ const Sidenav:React.FC = ()=>{
             <Divider style={{margin:'20px 0'}}/>
             <div className="sidenav-links">
                 {currentUser ? <>
+                    {currentUser.isAdmin && <NavLink className={(navdata)=>navdata.isActive ? 'sidenav-link active': 'sidenav-link'} to='/admin'><AdminPanelSettingsIcon style={{marginRight:'20px'}}/>Admin Panel</NavLink>}
                     <NavLink className={(navdata)=>navdata.isActive ? 'sidenav-link active': 'sidenav-link'} to='/profile'><AccountCircleIcon style={{marginRight:'20px'}}/>My Account</NavLink>
                     <NavLink className={(navdata)=>navdata.isActive ? 'sidenav-link active': 'sidenav-link'} to='#' onClick={()=>{sessionStorage.removeItem('cupcake');window.location.href='./'}}><LogoutIcon style={{marginRight:'20px'}}/> Logout</NavLink>
                 </>
