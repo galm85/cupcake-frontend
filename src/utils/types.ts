@@ -10,6 +10,7 @@ export type State = {
     categoriesReducer:any,
     usersReducer:any,
     settingReducer:any,
+    productsReducer:any,
 }
 
 
@@ -38,6 +39,22 @@ export type Category = {
     title:string;
     position:number;
     image:string;
+    cloudinary_id:string;
+    createdAt:string;
+    updatedAt:string;
+}
+
+
+export type Product = {
+    _id:string;
+    title:string;
+    image:string;
+    description:string;
+    price:number;
+    category:string | number;
+    isVegan:boolean;
+    isGlutenFree:boolean;
+    position:number;
     cloudinary_id:string;
     createdAt:string;
     updatedAt:string;

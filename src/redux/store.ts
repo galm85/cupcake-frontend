@@ -7,9 +7,13 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 import {settingReducer} from './reducers/settingReducer';
 import {usersReducer} from './reducers/usersReducer';
 import {categoriesReducer} from './reducers/categoriesReducer';
+import {productsReducer} from './reducers/productsReducers';
 
 export type MainState = {
     usersReducer:any
+    settingReducer:any
+    categoriesReducer:any
+    productsReducer:any
 }
 
 const middleware = [thunk];
@@ -20,6 +24,7 @@ const rootReducer = combineReducers({
     settingReducer,
     usersReducer,
     categoriesReducer,
+    productsReducer
 })
 
 
