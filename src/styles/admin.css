@@ -109,7 +109,12 @@
 }
 
 
-
+/* admin forms */
+.inputs-container{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
 
 
 
@@ -179,10 +184,35 @@
 
 
 
+/* ================ Navigation Bar ========== */
 
-/* admin forms */
-.inputs-container{
+.navigation-bar{
+    background-color:var(--text);
+    min-height: 70px;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
     display: flex;
-    justify-content: space-between;
+    justify-content: left;
     align-items: center;
+    padding: 0 50px;
 }
+
+.navigation-bar-item{
+    width: 25px;
+    margin:0 10px;
+    text-decoration: none;
+    color:white;
+    font-family: var(--main-font);
+    font-size: 20px;
+    font-weight: var(--light);
+    text-align: center;
+}
+
+.navigation-bar-item-active{
+    background-color: white;
+    border-radius: 10px;
+    color: var(--text);
+    cursor: default;
+}
+
+

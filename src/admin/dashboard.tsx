@@ -15,7 +15,7 @@ const Dashboard:React.FC = ()=>{
             <section className="dashboard-main">
                <Routes>
                    <Route path='categories' element={<CategoriesAdmin/>}/>
-                   <Route path='products' element={<ProductsAdmin/>}/>
+                   <Route path='products'  element={<ProductsAdmin/>}/>
                    <Route path='orders' element={<p>Orders</p>}/>
 
                    <Route path='categories/new-category' element={<NewCategory/>}/>
