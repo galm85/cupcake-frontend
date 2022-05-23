@@ -36,26 +36,30 @@ export const getProducts = (page:number | null = null,total:number = 10)=>async(
 }
 
 
-// export const deleteCategory = (id:string)=>async(dispatch:any)=>{
+export const deleteProduct = (id:string)=>async(dispatch:any)=>{
 
-//     try{
-//         dispatch({
-//             type:'setLoading',
-//             payload:true
-//         })
+    try{
+        dispatch({
+            type:'setLoading',
+            payload:true
+        })
 
-//         const res = await axios.delete(`${api}/categories/${id}`);
-//         alert(res.data.message);
-//         dispatch({
-//             type:'deleteCategory',
-//             payload:id
-//         })
+        const res = await axios.delete(`${api}/products/${id}`);
+        alert(res.data.message);
+        dispatch({
+            type:'deleteProduct',
+            payload:id
+        })
 
-//         dispatch({
-//             type:'setLoading',
-//             payload:false
-//         })
-//     }catch(err:any){
-//         console.log(err?.response.data.message);
-//     }
-// }
+        dispatch({
+            type:'setLoading',
+            payload:false
+        })
+    }catch(err:any){
+        dispatch({
+            type:'setLoading',
+            payload:false
+        })
+        console.log(err?.response.data.message);
+    }
+}

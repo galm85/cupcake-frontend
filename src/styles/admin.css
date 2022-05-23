@@ -176,3 +176,13 @@
     color: white;
 
 }
+
+
+
+
+/* admin forms */
+.inputs-container{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}

@@ -2,8 +2,12 @@ import { TableCell, TableRow,Table, TableHead, TableBody } from '@mui/material';
 import React from 'react'
 import { useDispatch,useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
-import { getProducts } from '../../../redux/actions/products.actions';
-import {State,Product} from '../../../utils/types'
+import { deleteProduct, getProducts } from '../../../redux/actions/products.actions';
+import {State,Product} from '../../../utils/types';
+import {capitilize} from '../../../utils/functions';
+import CheckIcon from '@mui/icons-material/Check';
+import ClearIcon from '@mui/icons-material/Clear';
+
 const ProductsAdmin:React.FC = ()=>{
 
 
@@ -33,10 +37,11 @@ const ProductsAdmin:React.FC = ()=>{
                            <TableCell>#</TableCell>
                            <TableCell>Image</TableCell>
                            <TableCell>Title</TableCell>
-                           <TableCell>Price</TableCell>
+                           <TableCell align='center'>Price</TableCell>
                            <TableCell>Category</TableCell>
-                           <TableCell>Vegan</TableCell>
-                           <TableCell>Gluten Free</TableCell>
+                           <TableCell align='center'>Vegan</TableCell>
+                           <TableCell align='center'>Gluten Free</TableCell>
+                           <TableCell>Setting</TableCell>
                            <TableCell>Setting</TableCell>
                        </TableRow>
                    </TableHead>
@@ -44,15 +49,17 @@ const ProductsAdmin:React.FC = ()=>{
                         {products && products.map((product:Product,index:number)=>(
                             <TableRow key={product._id}>
                                 <TableCell>{index+1}</TableCell>
-                                <TableCell><img src={product.image} width="50px" alt={product.title} /></TableCell>
+                                <TableCell><img src={product.image} width="50px"  alt={product.title} /></TableCell>
                                 <TableCell>{product.title}</TableCell>
-                                <TableCell>${product.price}</TableCell>
-                                <TableCell>${product.category}</TableCell>
-                                <TableCell>${product.isVegan ? 'yes' : 'no'}</TableCell>
-                                <TableCell>${product.isGlutenFree ? 'yes' : 'no'}</TableCell>
-                                <TableCell style={{display:'flex',justifyContent:'space-between'}}>
+                                <TableCell align='center'>${product.price}</TableCell>
+                                <TableCell>{capitilize(product.category_title[0].title)}</TableCell>
+                                <TableCell align='center'>{product.isVegan ? <CheckIcon color='success'/> : <ClearIcon color="error"/>}</TableCell>
+                                <TableCell align='center'>{product.isGlutenFree ? <CheckIcon color='success'/> : <ClearIcon color="error"/>}</TableCell>
+                                <TableCell>
                                    <button className='btn edit-btn'>Edit</button>
-                                   <button  className='btn delete-btn'>Delete</button>
+                                </TableCell>
+                                <TableCell>
+                                   <button onClick={()=>dispatch(deleteProduct(product._id))}  className='btn delete-btn'>Delete</button>
                                 </TableCell>
                             </TableRow>
                         ))}

@@ -58,4 +58,5 @@ export type Product = {
     cloudinary_id:string;
     createdAt:string;
     updatedAt:string;
+    category_title:Array<Category>;
 }

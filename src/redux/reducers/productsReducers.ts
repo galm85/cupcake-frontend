@@ -21,7 +21,11 @@ export const productsReducer = (state=initialState,action:Action)=>{
                 products:action.payload
             }
 
-
+        case 'deleteProduct':
+            return{
+                ...state,
+                products:state.products.filter(p=>p._id !== action.payload)
+            }
 
 
         default: return state

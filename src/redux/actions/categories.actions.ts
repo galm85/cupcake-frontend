@@ -23,6 +23,10 @@ export const getAllCategories = ()=>async(dispatch:any)=>{
     })
        
    } catch (error) {
+    dispatch({
+        type:'setLoading',
+        payload:false
+    })
        console.error(error);
    } 
    
@@ -50,6 +54,10 @@ export const deleteCategory = (id:string)=>async(dispatch:any)=>{
             payload:false
         })
     }catch(err:any){
+        dispatch({
+            type:'setLoading',
+            payload:false
+        })
         console.log(err?.response.data.message);
     }
 }
