@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Category, State } from '../utils/types';
 import { getAllCategories } from '../redux/actions/categories.actions';
 import CategoryCard from '../components/cards/categoryCard';
+import BreadCrumbs, { BreadCrumbsLink } from '../components/Breadcrumbs';
 
 
 
@@ -12,6 +13,11 @@ const MenuPage:React.FC = ()=>{
     const dispatch:any = useDispatch();
     const {categories} = useSelector((state:State)=>state.categoriesReducer)
     const [hoverImage,setHoverImage] = React.useState<string>('');
+
+    const breadLinks:BreadCrumbsLink[] = [
+        {label:'home',link:'/'},
+        
+    ]
 
     React.useEffect(()=>{
         dispatch(getAllCategories());
@@ -24,6 +30,7 @@ const MenuPage:React.FC = ()=>{
 
     return (
        <div className="menu-page" style={{width:'90%',margin:'auto'}}>
+           <BreadCrumbs links={breadLinks} currentPage="menu" />
            <h1 className='title'>Our Menu</h1>
            <Grid container style={{display:'flex',justifyContent:'space-between'}}>
                <Grid item xs={12} sm={4}>

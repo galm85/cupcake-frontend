@@ -3,16 +3,15 @@
 .product-page{
     min-height: 80vh;
     background-color: antiquewhite;
-
+    width: 100%;
 }
 
 
 .product-page-container{
-    width: 90%;
-    margin: auto;
+    width:50%;
     display: flex;
     justify-content: space-around;
-    padding-top: 10vh;
+    padding-top: 30px;
 }
 
 .product-page-left{
@@ -24,6 +23,7 @@
    flex:1;
    font-family: var(--main-font);
    color:var(--text); 
+   
 }
 
 .product-page-tags{
