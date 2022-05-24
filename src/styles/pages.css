@@ -32,12 +32,31 @@
 }
 
 
+/* ============== Category Page ============= */
+.category-page{
+    width: 100%;
+    background-color: antiquewhite;
+    min-height: 80vh;
+}
+
+.category-page-grid-container{
+    max-width: 90%;
+    margin: auto;
+    display: flex;
+    justify-content:space-between;
+
+    
+    
+}
+
 /* ============== Product Page ============= */
 
 .product-page{
     min-height: 80vh;
     background-color: antiquewhite;
     width: 100%;
+    
+    
 }
 
 
@@ -103,5 +122,5 @@
     border-radius: 50px;
     width: 100%;
     opacity:1;
-    transition: all ease 0.5s;
+    transition: all ease 0.3s;
   }

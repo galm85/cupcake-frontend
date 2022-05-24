@@ -157,8 +157,21 @@
     width: 100%;
     font-family: var(--main-font);
     height: 150px;
-    border: 1px solid black;
+    border: 1px solid var(--text);
     margin: 30px 0;
+    background-color: bisque;
+    border-radius: 4px;
+    overflow: hidden;
+    cursor: pointer;
+    color: var(--text);
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.302);
+    transition-duration: 0.2s;
+}
+
+.product-card:hover{
+    background-color: rgb(243, 197, 140);
+    box-shadow: 2px 1px 5px rgba(0, 0, 0, 0.602);
+
 }
 
 .product-card img{

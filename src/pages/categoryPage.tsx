@@ -33,15 +33,19 @@ const CategoryPage:React.FC = ()=>{
 
     return (
         <div className="category-page">
+            
             <BreadCrumbs currentPage={capitilize(catTitle)} links={breadLinks}/>
-                <h1>{catTitle.toUpperCase()}</h1>
-                <Grid container style={{display:'flex',justifyContent:'space-around'}}>
-                    {products && products.map((product:Product)=>(
-                    <Grid item xs={11} sm={10} md={5} key={product._id} >
-                        <ProductCard catTitle={catTitle} product={product} />
-                    </Grid>
-                    ))}
+            
+            <h1 className='page-title'>{catTitle.toUpperCase()}</h1>
+            
+            <Grid container   className="category-page-grid-container" >
+                {products && products.map((product:Product)=>(
+                <Grid item xs={11} sm={10} md={5} key={product._id} >
+                    <ProductCard catTitle={catTitle} product={product} />
                 </Grid>
+                ))}
+            </Grid>
+
         </div>
     )
 }
