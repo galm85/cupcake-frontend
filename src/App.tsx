@@ -6,7 +6,7 @@ import { useSelector } from 'react-redux';
 
 // components
 import {Navbar,Sidenav,Footer,Loading} from './components';
-import { CupcakePage, HomePage, LoginPage, RegisterPage } from './pages';
+import { CupcakePage, HomePage, LoginPage, RegisterPage,MenuPage,CategoryPage } from './pages';
 import { Dashboard } from './admin';
 import { State } from './utils/types';
 
@@ -33,6 +33,8 @@ function App() {
           <Route path='/register' element={<RegisterPage/>} />
           <Route path='/login' element={<LoginPage/>} />
           <Route path='/cupcakes' element={<CupcakePage />} />
+          <Route path='/menu' element={<MenuPage />} />
+          <Route path='/menu/:categoryName' element={<CategoryPage />} />
           
           
           <Route path='/admin/*' element={<Dashboard />} />

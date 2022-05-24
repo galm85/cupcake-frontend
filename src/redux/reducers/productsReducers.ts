@@ -31,6 +31,18 @@ export const productsReducer = (state=initialState,action:Action)=>{
                 totalProducts:state.totalProducts -1,
             }
 
+        case 'getProductsByCategory':
+            return{
+                ...state,
+                products:action.payload
+            }
+
+        case 'getSingleProduct':
+            return{
+                ...state,
+                product:action.payload
+            }
+
 
         default: return state
         
