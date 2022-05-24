@@ -12,7 +12,8 @@ const MenuPage:React.FC = ()=>{
 
     const dispatch:any = useDispatch();
     const {categories} = useSelector((state:State)=>state.categoriesReducer)
-    const [hoverImage,setHoverImage] = React.useState<string>('');
+    const [hoverImage,setHoverImage] = React.useState<string>('./images/menu.jpg');
+    const hoverRef = React.useRef<any>(null);
 
     const breadLinks:BreadCrumbsLink[] = [
         {label:'home',link:'/'},
@@ -23,24 +24,43 @@ const MenuPage:React.FC = ()=>{
         dispatch(getAllCategories());
     },[])
 
+
+  
+
     const handleHover = (image:string):void=>{
-        setHoverImage(image);
+       
+        hoverRef.current.style.opacity = 0;
+        setTimeout(()=>{
+            setHoverImage(image);
+        },300)
+        setTimeout(()=>{
+            hoverRef.current.style.opacity = 1;
+
+        },500)
+       
+       
+        
+       
     }
 
 
     return (
-       <div className="menu-page" style={{width:'90%',margin:'auto'}}>
+       <div className="menu-page">
            <BreadCrumbs links={breadLinks} currentPage="menu" />
-           <h1 className='title'>Our Menu</h1>
-           <Grid container style={{display:'flex',justifyContent:'space-between'}}>
-               <Grid item xs={12} sm={4}>
-                   {categories && categories.map((category:Category)=>(
-                        <CategoryCard key={category._id}  category={category} fn={handleHover} />
-                   ))}
+           <h1 className='page-title'>Our Menu</h1>
+           <Grid container className="manu-page-grid-container" >
+               <Grid item xs={12} md={8}>
+                   <Grid container columnSpacing={8} rowSpacing={2}>
+                            {categories && categories.map((category:Category)=>(
+                            <Grid item xs={12} sm={5} key={category._id}>
+                                <CategoryCard   category={category} fn={handleHover} />
+                            </Grid>
+                            ))}
+                    </Grid>
 
                </Grid>
-               <Grid item xs={12} sm={4}>
-                    <img src={hoverImage} style={{borderRadius:'50%'}} alt="" width="100%" />
+               <Grid item xs={12} md={4} className="manu-page-hover-image" >
+                    <img ref={hoverRef}  src={hoverImage}  alt=""  />
                </Grid>
            </Grid>
        </div>
