@@ -16,11 +16,11 @@ const ProductCard:React.FC<Props> = ({product,catTitle})=>{
 
 
     return (
-        <div className="product-card">
+        <div className="product-card" onClick={()=>navigate(`${product.title.toLowerCase()}`,{state:{product,catTitle}})}>
             <img src={product.image} alt={product.title} />
             <div className="product-card-data">
                 <h3>{product.title}</h3>
-                <p>{product.description}</p>
+                <p>{product.description.substring(0,80)} {product.description.length > 80 ? "..." : ''}</p>
             </div>
             <div className="product-card-details">
                 <h4> ${product.price}</h4>

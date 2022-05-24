@@ -1,0 +1,43 @@
+/* ============== Product Page ============= */
+
+.product-page{
+    min-height: 80vh;
+    background-color: antiquewhite;
+
+}
+
+
+.product-page-container{
+    width: 90%;
+    margin: auto;
+    display: flex;
+    justify-content: space-around;
+    padding-top: 10vh;
+}
+
+.product-page-left{
+    display: flex;
+    flex-direction: column;
+}
+
+.product-page-data{
+   flex:1;
+   font-family: var(--main-font);
+   color:var(--text); 
+}
+
+.product-page-tags{
+    display: flex;
+    align-items: center;
+
+}
+
+.product-page-tags h4{
+    display: flex;
+    align-items: center;
+    margin-right:20px;
+    height: 50px;
+    font-family: var(--main-font);
+    color: var(--text);
+    font-weight: var(--light)
+}
