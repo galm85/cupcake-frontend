@@ -124,3 +124,38 @@
     opacity:1;
     transition: all ease 0.3s;
   }
+
+
+
+
+
+  /* ============ Profile Page ================== */
+  .profile-page{
+      width: 100%;
+      min-height: 80vh;
+      background-color: antiquewhite;
+      display: flex;
+      flex-direction: column;
+  }
+
+  .profile-page .user-data{
+      width: 70%;
+      margin: 100px auto
+  }
+  .profile-page .user-data .user-image{
+      display: flex;
+      justify-content: center;
+  }
+
+  .profile-page .user-data .user-image img{
+      width: 200px;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 50%;
+  }
+
+  .profile-page .user-data .user-details{
+      margin-top: 20px;
+      font-family: var(--main-font);
+      color: var(--text);
+  }
