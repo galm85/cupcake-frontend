@@ -1,7 +1,7 @@
 import { TableCell, TableRow,Table, TableHead, TableBody } from '@mui/material';
 import React from 'react'
 import { useDispatch,useSelector } from 'react-redux';
-import { NavLink,useSearchParams } from 'react-router-dom';
+import { NavLink,useSearchParams,useLocation,useNavigate } from 'react-router-dom';
 import { deleteProduct, getProducts } from '../../../redux/actions/products.actions';
 import {State,Product} from '../../../utils/types';
 import {capitilize} from '../../../utils/functions';
@@ -19,9 +19,6 @@ const options = [
 const ProductsAdmin:React.FC = ()=>{
 
     let page:number = 1;
-    // let itemsPerPage:number = 10;
-
-    // const [page,setPage] = React.useState<number>(1);
     const [itemsPerPage,setItemsPerPage] = React.useState<number>(10);
 
     const [searchParams] = useSearchParams();
@@ -30,7 +27,8 @@ const ProductsAdmin:React.FC = ()=>{
     }
 
 
-
+    const location:any = useLocation();
+    const navigate:any = useNavigate();
     const dispatch:any = useDispatch();
     const {products,totalProducts} = useSelector((state:State)=>state.productsReducer);
 
@@ -76,7 +74,7 @@ const ProductsAdmin:React.FC = ()=>{
                                 <TableCell align='center'>{product.isVegan ? <CheckIcon color='success'/> : <ClearIcon color="error"/>}</TableCell>
                                 <TableCell align='center'>{product.isGlutenFree ? <CheckIcon color='success'/> : <ClearIcon color="error"/>}</TableCell>
                                 <TableCell>
-                                   <button className='btn edit-btn'>Edit</button>
+                                   <button onClick={()=>navigate('/admin/products/edit-product',{state:product})} className='btn edit-btn'>Edit</button>
                                 </TableCell>
                                 <TableCell>
                                    <button onClick={()=>dispatch(deleteProduct(product._id))}  className='btn delete-btn'>Delete</button>

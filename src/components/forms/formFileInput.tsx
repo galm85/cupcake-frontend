@@ -6,13 +6,14 @@ type Props = {
     label:string;
     onChange:any;
     name:string;
+    value?:string;
 }
 
 
-const FormFileInput:React.FC<Props> = ({label,onChange,name})=>{
+const FormFileInput:React.FC<Props> = ({label,onChange,name,value=''})=>{
 
 
-    const [thumbnail,setThumbnail] = React.useState<string>('');
+    const [thumbnail,setThumbnail] = React.useState<string>(value);
 
     const handleFile = (e:any):void=>{
         const file = e.target.files[0];

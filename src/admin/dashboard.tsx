@@ -1,7 +1,7 @@
 import React from 'react';
 import { Routes,Route } from 'react-router-dom';
 
-import {DashboardNav,CategoriesAdmin,NewCategory,ProductsAdmin,NewProduct,EditCategory} from './index';
+import {DashboardNav,CategoriesAdmin,NewCategory,ProductsAdmin,NewProduct,EditCategory,EditProduct} from './index';
 
 
 
@@ -22,6 +22,7 @@ const Dashboard:React.FC = ()=>{
                    <Route path='categories/edit-category' element={<EditCategory/>}/>
                    
                    <Route path='products/new-product' element={<NewProduct/>}/>
+                   <Route path='products/edit-product' element={<EditProduct/>}/>
                </Routes>
             </section>
         </div>
