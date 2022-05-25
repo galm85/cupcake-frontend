@@ -1,7 +1,7 @@
 import { Table, TableBody, TableCell, TableHead, TableRow,TableFooter } from '@mui/material';
 import React from 'react'
 import { useDispatch,useSelector } from 'react-redux'
-import { NavLink } from 'react-router-dom';
+import { NavLink,useNavigate } from 'react-router-dom';
 import { deleteCategory, getAllCategories } from '../../../redux/actions/categories.actions';
 import { Category, State } from '../../../utils/types';
 
@@ -9,6 +9,7 @@ import { Category, State } from '../../../utils/types';
 
 const CategoriesAdmin:React.FC = ()=>{
 
+    const navigate:any = useNavigate();
     const dispatch:any = useDispatch();
     const {categories} = useSelector((state:State)=>state.categoriesReducer);
     
@@ -43,7 +44,7 @@ const CategoriesAdmin:React.FC = ()=>{
                                <TableCell><img width="50px" src={category.image} alt={category.title} /></TableCell>
                                <TableCell>{category.title}</TableCell>
                                <TableCell style={{display:'flex',justifyContent:'space-between'}}>
-                                   <button className='btn edit-btn'>Edit</button>
+                                   <button onClick={()=>navigate('/admin/categories/edit-category',{state:category})} className='btn edit-btn'>Edit</button>
                                    <button onClick={()=>dispatch(deleteCategory(category._id))} className='btn delete-btn'>Delete</button>
                                 </TableCell>
                            </TableRow>
