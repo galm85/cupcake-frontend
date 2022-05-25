@@ -5,9 +5,10 @@ import {useSelector} from 'react-redux';
 
 type Props={
     setMenuOpen:React.Dispatch<React.SetStateAction<boolean>>
+    setOrderOpen:React.Dispatch<React.SetStateAction<boolean>>
 }
 
-const Navbar:React.FC<Props> = ({setMenuOpen}) => {
+const Navbar:React.FC<Props> = ({setMenuOpen,setOrderOpen}) => {
 
     const {currentUser} = useSelector((state:any) =>state.usersReducer);
 
@@ -23,9 +24,14 @@ const Navbar:React.FC<Props> = ({setMenuOpen}) => {
                 </NavLink>
             </div>
             {currentUser ?
+            <>
                 <div className="nav-links">
                     <img src={currentUser.image} width="50px" alt="user image" style={{borderRadius:'50%'}} />
                 </div>
+                 <div className="menu-item">
+                    <MenuIcon fontSize='large' onClick={()=>setOrderOpen(true)}/>
+                </div>
+            </>
                 :
                 <div className="nav-links">
                     <NavLink className="login-btn" to='/login'>Login</NavLink>

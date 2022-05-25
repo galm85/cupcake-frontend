@@ -11,6 +11,7 @@ export type State = {
     usersReducer:any,
     settingReducer:any,
     productsReducer:any,
+    ordersReducer:any
 }
 
 
@@ -20,7 +21,7 @@ export type State = {
 // DB objects types
 
 export type User={
-    id?:string;
+    _id:string;
     firstName:string;
     lastName:string;
     email:string;
@@ -59,4 +60,18 @@ export type Product = {
     createdAt:string;
     updatedAt:string;
     category_title:Array<Category>;
+}
+
+
+export type CurrentOrder = Product & {
+    amount:number;
+}
+
+export type Order = {
+    _id:string;
+    items:[];
+    isActive:boolean;
+    totalAmount?:number;
+    createdAt:string;
+    updatedAt:string;
 }

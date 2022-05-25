@@ -8,6 +8,7 @@ import {settingReducer} from './reducers/settingReducer';
 import {usersReducer} from './reducers/usersReducer';
 import {categoriesReducer} from './reducers/categoriesReducer';
 import {productsReducer} from './reducers/productsReducers';
+import {ordersReducer} from './reducers/ordersReducers';
 
 export type MainState = {
     usersReducer:any
@@ -24,7 +25,8 @@ const rootReducer = combineReducers({
     settingReducer,
     usersReducer,
     categoriesReducer,
-    productsReducer
+    productsReducer,
+    ordersReducer
 })
 
 

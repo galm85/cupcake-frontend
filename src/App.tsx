@@ -2,18 +2,29 @@ import { Drawer } from '@mui/material';
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 import './App.css';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import {State,User} from './utils/types';
+import { getCurrentOrder } from './redux/actions/orders.actions';
 
 // components
-import {Navbar,Sidenav,Footer,Loading} from './components';
+import {Navbar,Sidenav,Footer,Loading, OrderMenu} from './components';
 import { CupcakePage, HomePage, LoginPage, RegisterPage,MenuPage,CategoryPage,ProductPage, ProfilePage } from './pages';
 import { Dashboard } from './admin';
-import { State } from './utils/types';
 
 function App() {
 
+  const dispatch:any = useDispatch();
+  const user:User = useSelector((state:State)=>state.usersReducer.currentUser);
   const [menuOpen,setMenuOpen] = React.useState<boolean>(false);
+  const [orderOpen,setOrderOpen] = React.useState<boolean>(true);
   const {loading} = useSelector((state:State)=>state.settingReducer);
+
+
+  React.useEffect(()=>{
+    dispatch(getCurrentOrder(user._id));
+  },[])
+
+
   return (
     <div className="app">
       
@@ -21,8 +32,12 @@ function App() {
         <Sidenav/>
       </Drawer>
 
+      <Drawer anchor='right' open={orderOpen} onClose={()=>setOrderOpen(false)}>
+        <OrderMenu/>
+      </Drawer>
+
       <header>
-        <Navbar setMenuOpen={setMenuOpen}/>
+        <Navbar setMenuOpen={setMenuOpen} setOrderOpen={setOrderOpen}/>
         {loading && <Loading  /> }
         
       </header>

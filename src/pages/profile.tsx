@@ -1,12 +1,13 @@
 import { Divider, Grid } from '@mui/material';
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { State, User } from '../utils/types';
+import { CurrentOrder, State, User } from '../utils/types';
 
 
 const ProfilePage:React.FC = ()=>{
 
     const user:User = useSelector((state:State)=>state.usersReducer.currentUser);
+    const {currentOrder,totalPriceCurrentOrder} = useSelector((state:State)=>state.ordersReducer);
 
     return (
         <div className="profile-page">
@@ -24,8 +25,19 @@ const ProfilePage:React.FC = ()=>{
             <Divider/>
 
             <Grid container>
+                <h3>My Order</h3>
+                {currentOrder && currentOrder.map((order:CurrentOrder)=>(
+                    <div key={order._id}>
+                        <img src={order.image} width="50px" alt={order.title} />
+                        <p>${order.price} x ${order.amount} = ${order.price*order.amount}</p>
+                    </div>
+                ))}
+                <h3>Total: ${totalPriceCurrentOrder}</h3>
+            </Grid>
+
+            <Grid container>
                 <Grid item xs={12}>
-                    <h3>Orders</h3>
+                    <h3>Orders History</h3>
                 </Grid>
             </Grid>
         </div>

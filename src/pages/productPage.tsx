@@ -1,24 +1,40 @@
 import React from 'react'
 import { useLocation } from 'react-router-dom';
 import { Button, Divider, Grid } from '@mui/material';
-import { Product } from '../utils/types';
+import { Product, State, User } from '../utils/types';
 import CheckIcon from '@mui/icons-material/Check';
 import ClearIcon from '@mui/icons-material/Clear';
 import BreadCrumbs, { BreadCrumbsLink } from '../components/Breadcrumbs';
+import axios from 'axios';
+import { useSelector,useDispatch } from 'react-redux';
+import { addItemToOrder } from '../redux/actions/orders.actions';
 
 
 
 const ProductPage:React.FC = ()=>{
 
     const location:any = useLocation();
+    const dispatch:any = useDispatch();
     const catTitle:string = location.state.catTitle;
     const product:Product = location.state.product;
+    const user:User = useSelector((state:State)=>state.usersReducer.currentUser);
 
     const breadLinks:BreadCrumbsLink[] = [
         {label:'home',link:'/'},
         {label:'menu',link:'/menu'},
         {label:catTitle,link:`/menu/${catTitle}`,categoryId:product.category,catTitle:catTitle}
     ]
+
+
+    const handleAddItem = async(product:Product)=>{
+
+
+        let item:any = {...product};
+        item.amount = 1;
+        dispatch(addItemToOrder(item,user._id));
+        // const res = await axios.patch(`http://localhost:4000/orders/current-order/${user._id}`,item);
+
+    }
     
 
     return(
@@ -41,7 +57,7 @@ const ProductPage:React.FC = ()=>{
                     </div>
 
                     <div className="product-page-actions">
-                        <Button variant="contained">Add To Order</Button>
+                        <Button variant="contained" onClick={()=>handleAddItem(product)}>Add To Order</Button>
                     </div>
                 </Grid>
                 <Grid item xs={12} md={4} className="product-page-right">
