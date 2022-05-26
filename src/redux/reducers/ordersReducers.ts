@@ -18,6 +18,14 @@ const initialState:OrderReducerState = {
 export const ordersReducer = (state=initialState,action:Action)=>{
     
     switch(action.type){
+
+
+        case 'getAllOrderAsAdmin':
+            return{
+                ...state,
+                ordersHistory:action.payload
+            }
+
         
         case 'addItemToOrder':
             return{
@@ -40,6 +48,7 @@ export const ordersReducer = (state=initialState,action:Action)=>{
                 currentOrder:[],
                 totalPriceCurrentOrder:0
             }
+        
         
 
         default: return state

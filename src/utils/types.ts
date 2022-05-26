@@ -69,9 +69,15 @@ export type CurrentOrder = Product & {
 
 export type Order = {
     _id:string;
-    items:[];
+    items:string;
     isActive:boolean;
-    totalAmount?:number;
+    totalAmount:number;
+    contactPerson:string,
+    address:string,
+    city:string,
+    phone:string,
+    paymentMethod:string,
+    creditCard:string,
     createdAt:string;
     updatedAt:string;
 }

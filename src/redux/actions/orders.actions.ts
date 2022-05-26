@@ -2,6 +2,42 @@ import axios from 'axios';
 const api = process.env.REACT_APP_API_URL;
 
 
+
+export const getAllOrderAsAdmin = ()=>async(dispatch:any)=>{
+
+    try {
+        dispatch({
+            type:'setLoading',
+            payload:true
+        })
+
+       
+        const res = await axios.get(`${api}/orders/all-orders`);
+
+        dispatch({
+            type:'getAllOrderAsAdmin',
+            payload:res.data
+        })
+
+
+        dispatch({
+            type:'setLoading',
+            payload:false
+        })
+
+    } catch (error) {
+        console.log(error);
+        dispatch({
+            type:'setLoading',
+            payload:false
+        })
+    }
+
+    
+}
+
+
+
 export const addItemToOrder = (item:any,userId:string)=>async(dispatch:any)=>{
 
    try {
