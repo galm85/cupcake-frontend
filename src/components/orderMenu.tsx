@@ -4,7 +4,13 @@ import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { CurrentOrder, State, User } from '../utils/types';
 
-const OrderMenu:React.FC = ()=>{
+type Props = {
+    setOrderOpen:React.Dispatch<React.SetStateAction<boolean>>
+    
+
+}
+
+const OrderMenu:React.FC<Props> = ({setOrderOpen})=>{
 
     const user:User = useSelector((state:State)=>state.usersReducer.currentUser);
     const {currentOrder,totalPriceCurrentOrder} = useSelector((state:State)=>state.ordersReducer);
@@ -15,7 +21,7 @@ const OrderMenu:React.FC = ()=>{
             
             <h1>My Order</h1>
             <Divider style={{margin:'20px 0'}}/>
-                {currentOrder.length > 0 ? 
+                {currentOrder &&  currentOrder.length > 0 ? 
                     <div className="order-container">
                         {currentOrder.map((order:CurrentOrder)=>(
                           
@@ -41,7 +47,7 @@ const OrderMenu:React.FC = ()=>{
                             <h2>Total: ${totalPriceCurrentOrder}</h2>
                         </div>
                         <div className="checkout">
-                          <Link  to='/checkout' style={{width:'100%',textDecoration:'none'}}>
+                          <Link onClick={()=>setOrderOpen(false)}  to='/checkout' style={{width:'100%',textDecoration:'none'}}>
                             <Button  variant='contained' color="warning" fullWidth>Checkout</Button>
                           </Link>  
                         </div>

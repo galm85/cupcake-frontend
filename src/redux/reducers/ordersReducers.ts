@@ -33,6 +33,13 @@ export const ordersReducer = (state=initialState,action:Action)=>{
                 currentOrder:action.payload.items,
                 totalPriceCurrentOrder:action.payload.total
             }
+
+        case 'placeOrder':
+            return{
+                ...state,
+                currentOrder:[],
+                totalPriceCurrentOrder:0
+            }
         
 
         default: return state

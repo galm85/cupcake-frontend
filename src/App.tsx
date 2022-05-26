@@ -8,7 +8,7 @@ import { getCurrentOrder } from './redux/actions/orders.actions';
 
 // components
 import {Navbar,Sidenav,Footer,Loading, OrderMenu} from './components';
-import { CupcakePage, HomePage, LoginPage, RegisterPage,MenuPage,CategoryPage,ProductPage, ProfilePage } from './pages';
+import { CupcakePage, HomePage, LoginPage, RegisterPage,MenuPage,CategoryPage,ProductPage, ProfilePage, CheckoutPage } from './pages';
 import { Dashboard } from './admin';
 
 function App() {
@@ -16,12 +16,14 @@ function App() {
   const dispatch:any = useDispatch();
   const user:User = useSelector((state:State)=>state.usersReducer.currentUser);
   const [menuOpen,setMenuOpen] = React.useState<boolean>(false);
-  const [orderOpen,setOrderOpen] = React.useState<boolean>(true);
+  const [orderOpen,setOrderOpen] = React.useState<boolean>(false);
   const {loading} = useSelector((state:State)=>state.settingReducer);
 
 
   React.useEffect(()=>{
-    dispatch(getCurrentOrder(user._id));
+    if(user){
+      dispatch(getCurrentOrder(user._id));
+    }
   },[])
 
 
@@ -33,7 +35,7 @@ function App() {
       </Drawer>
 
       <Drawer anchor='right' open={orderOpen} onClose={()=>setOrderOpen(false)}>
-        <OrderMenu/>
+        <OrderMenu setOrderOpen={setOrderOpen}/>
       </Drawer>
 
       <header>
@@ -52,6 +54,7 @@ function App() {
           <Route path='/menu/:categoryName' element={<CategoryPage />} />
           <Route path='/menu/:categoryName/:productName' element={<ProductPage />} />
           <Route path='/profile' element={<ProfilePage />} />
+          <Route path='/checkout' element={<CheckoutPage/>} />
           
           
           <Route path='/admin/*' element={<Dashboard />} />

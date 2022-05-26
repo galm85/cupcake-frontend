@@ -2,6 +2,7 @@ import React from 'react';
 import {NavLink} from 'react-router-dom';
 import MenuIcon from '@mui/icons-material/Menu';
 import {useSelector} from 'react-redux';
+import ShoppingBasketIcon from '@mui/icons-material/ShoppingBasket';
 
 type Props={
     setMenuOpen:React.Dispatch<React.SetStateAction<boolean>>
@@ -29,7 +30,7 @@ const Navbar:React.FC<Props> = ({setMenuOpen,setOrderOpen}) => {
                     <img src={currentUser.image} width="50px" alt="user image" style={{borderRadius:'50%'}} />
                 </div>
                  <div className="menu-item">
-                    <MenuIcon fontSize='large' onClick={()=>setOrderOpen(true)}/>
+                    <ShoppingBasketIcon fontSize='large' onClick={()=>setOrderOpen(true)}/>
                 </div>
             </>
                 :

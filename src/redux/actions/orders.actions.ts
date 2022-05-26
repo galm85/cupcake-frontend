@@ -68,3 +68,34 @@ export const getCurrentOrder = (userId:string)=>async(dispatch:any)=>{
     }
 }
 
+
+
+
+export const placeOrder = (userId:string,orderDetails:any)=>async(dispatch:any)=>{
+    
+    try {
+        dispatch({
+            type:'setLoading',
+            payload:true
+        })
+
+        const res =  await axios.patch(`${api}/orders/place-order/${userId}`,orderDetails);
+        alert(res.data.message);
+        dispatch({
+            type:'placeOrder',
+        })
+
+
+
+        dispatch({
+            type:'setLoading',
+            payload:false
+        })
+        
+    } catch (error) {
+        dispatch({
+            type:'setLoading',
+            payload:false
+        })
+    }
+}
