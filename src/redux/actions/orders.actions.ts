@@ -107,7 +107,7 @@ export const getCurrentOrder = (userId:string)=>async(dispatch:any)=>{
 
 
 export const placeOrder = (userId:string,orderDetails:any)=>async(dispatch:any)=>{
-    
+  
     try {
         dispatch({
             type:'setLoading',
@@ -126,6 +126,10 @@ export const placeOrder = (userId:string,orderDetails:any)=>async(dispatch:any)=
             type:'setLoading',
             payload:false
         })
+        
+        window.location.href = './';
+        
+
         
     } catch (error) {
         dispatch({

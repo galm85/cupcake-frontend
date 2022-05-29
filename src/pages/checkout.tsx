@@ -7,6 +7,7 @@ import { placeOrder } from '../redux/actions/orders.actions';
 import { Order, State, User,CurrentOrder } from '../utils/types';
 
 
+
 const paymentMethods = [
     {_id:"Credit Card",title:'Credit Card'},
     {_id:"Cash",title:'Cash'},
@@ -102,27 +103,27 @@ const CheckoutPage:React.FC = ()=>{
             valid = false;
         }
 
-        if(orderDetails.paymentMethod &&  (!orderDetails.creditCard || orderDetails.creditCard === "")){
+        if(orderDetails.paymentMethod === 'Credit Card' &&  (!orderDetails.creditCard || orderDetails.creditCard === "")){
             error.creditCard = 'Please insert select Credit card';
             valid = false;
         }
 
-        if(orderDetails.paymentMethod &&  (!orderDetails.creditCardNumber || orderDetails.creditCardNumber === "")){
+        if(orderDetails.paymentMethod === 'Credit Card' && (!orderDetails.creditCardNumber || orderDetails.creditCardNumber === "")){
             error.creditCardNumber = 'Please insert the Credit card number';
             valid = false;
         }
 
-        if(orderDetails.paymentMethod &&  (!orderDetails.ccv || orderDetails.ccv >999 || orderDetails.ccv < 100)){
+        if(orderDetails.paymentMethod === 'Credit Card'  &&  (!orderDetails.ccv || orderDetails.ccv >999 || orderDetails.ccv < 100)){
             error.ccv = 'Please insert a valid CCV number';
             valid = false;
         }
 
-        if(orderDetails.paymentMethod &&  (!orderDetails.month || orderDetails.month === "")){
+        if(orderDetails.paymentMethod === 'Credit Card' && (!orderDetails.month || orderDetails.month === "")){
             error.month = 'Please Select the expired month of the Credit card';
             valid = false;
         }
 
-        if(orderDetails.paymentMethod &&  (!orderDetails.year || orderDetails.year === "")){
+        if(orderDetails.paymentMethod === 'Credit Card' && (!orderDetails.year || orderDetails.year === "")){
             error.year = 'Please Select the expired year of the Credit card';
             valid = false;
         }
@@ -132,8 +133,9 @@ const CheckoutPage:React.FC = ()=>{
     }
 
 
-    const handleSubmit = (e:FormEvent)=>{
+    const handleSubmit = async(e:FormEvent)=>{
         e.preventDefault();
+      
         let valid = validateForm();
 
         if(valid){
@@ -146,8 +148,9 @@ const CheckoutPage:React.FC = ()=>{
                 paymentMethod:orderDetails.paymentMethod,
                 creditCard:orderDetails.creditCard,
             }
-            dispatch(placeOrder(user._id,data));
+            await dispatch(placeOrder(user._id,data));
         }
+
 
     }
 
@@ -178,7 +181,7 @@ const CheckoutPage:React.FC = ()=>{
                                     {orderDetails.paymentMethod === 'Credit Card' &&
                                     
                                     <>
-                                    <FormSelect name="creditCard" label='Credit card' onChange={handleChange} options={paymentMethods} error={errors.creditCard} value={orderDetails.creditCard} />
+                                    <FormSelect name="creditCard" label='Credit card' onChange={handleChange} options={creditCards} error={errors.creditCard} value={orderDetails.creditCard} />
                                     <FormInput name="creditCardNumber" label='Credit card Number' onChange={handleChange} helperText={errors.creditCardNumber} error={errors.creditCardNumber} value={orderDetails.creditCardNumber} />
                                     <FormInput name='ccv' label='CCV' error={errors.ccv} onChange={handleChange} helperText={errors.ccv} value={orderDetails.ccv}/>
                                         <div style={{display:'flex',justifyContent:'space-between'}}>

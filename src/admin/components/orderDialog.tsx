@@ -24,6 +24,7 @@ const OrderDialog:React.FC<Props> = ({order})=>{
 
     const handleStatusChange = (orderId:string)=>{
         dispatch(changeOrderStatus(orderId));
+        setOpen(false);
     }
 
 
