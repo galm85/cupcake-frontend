@@ -11,6 +11,9 @@ export {default as EditProduct} from './pages/products/editProduct';
 
 export {default as OrdersAdmin} from './pages/orders/orders';
 
+export {default as RestaurantAdmin} from './pages/restaurants/restaurant';
+export {default as NewRestaurant} from './pages/restaurants/newRestaurant';
+
 
 
 

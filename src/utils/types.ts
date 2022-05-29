@@ -82,3 +82,21 @@ export type Order = {
     createdAt:string;
     updatedAt:string;
 }
+
+
+
+export type Restaurant = {
+    _id:string;
+    city:string;
+    image:string;
+    address:string;
+    phone:string;
+    events:boolean;
+    dayWeekOpen:string;
+    dayWeekClose:string;
+    friOpen:string;
+    friClose:string;
+    satOpen:string;
+    satClose:string;
+    cloudinary_id:string;   
+}
