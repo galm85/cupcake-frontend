@@ -16,19 +16,25 @@ import LogoutIcon from '@mui/icons-material/Logout';
 import WorkIcon from '@mui/icons-material/Work';
 import AdminPanelSettingsIcon from '@mui/icons-material/AdminPanelSettings';
 
+type Props={
+    setMenuOpen:React.Dispatch<React.SetStateAction<boolean>>
+    
+}
 
-const Sidenav:React.FC = ()=>{
+const Sidenav:React.FC<Props> = ({setMenuOpen})=>{
 
     const {currentUser} = useSelector((state:MainState)=>state.usersReducer);
 
+  
     return(
         <div className="sidenav">
             <div className="sidenav-header">
                 <img src="./images/cupcake-logo.png" width='100px' alt="logo" />
                 <h2>The CupCake Factory</h2>
             </div>
+          
             <Divider style={{margin:'20px 0'}}/>
-            <div className="sidenav-links">
+            <div className="sidenav-links" onClick={()=>setMenuOpen(false)}>
                 <NavLink className={(navdata)=>navdata.isActive ? 'sidenav-link active': 'sidenav-link'} to='/'><HomeIcon style={{marginRight:'20px'}}/> Home</NavLink>
                 <NavLink className={(navdata)=>navdata.isActive ? 'sidenav-link active': 'sidenav-link'} to='/cupcakes'><CakeIcon style={{marginRight:'20px'}}/>Our Cupcaks</NavLink>
                 <NavLink className={(navdata)=>navdata.isActive ? 'sidenav-link active': 'sidenav-link'} to='/menu'><MenuBookIcon style={{marginRight:'20px'}}/>Menu</NavLink>

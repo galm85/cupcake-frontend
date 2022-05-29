@@ -26,12 +26,13 @@ const Navbar:React.FC<Props> = ({setMenuOpen,setOrderOpen}) => {
             </div>
             {currentUser ?
             <>
+                <div className="menu-item">
+                    <ShoppingBasketIcon fontSize='large'   style={{marginRight:'20px'}} onClick={()=>setOrderOpen(true)}/>
+                </div>
                 <div className="nav-links">
                     <img src={currentUser.image} width="50px" alt="user image" style={{borderRadius:'50%'}} />
                 </div>
-                 <div className="menu-item">
-                    <ShoppingBasketIcon fontSize='large' onClick={()=>setOrderOpen(true)}/>
-                </div>
+                
             </>
                 :
                 <div className="nav-links">

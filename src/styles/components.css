@@ -107,6 +107,26 @@
 }
 
 
+.sidenav-user{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 20px;
+    margin:0 0 20px 0;
+}
+
+.sidenav-user img{
+    border-radius: 50%;
+    width:50px;
+    margin-right: 10px;
+}
+
+.sidenav p{
+    color: var(--purpel);
+    font-family: var(--main-font);
+    font-weight: var(--bold);
+}
+
 
 
 /* ============ Category Card =========== */
@@ -232,7 +252,9 @@
 .order-menu{
     padding: 20px 0;
     min-width: 400px;
-    background-color: bisque;
+    
+    background-color: var(--orange);
+    min-height: 100vh;
 }
 
 .order-menu h1{
@@ -308,4 +330,25 @@
     display: flex;
     justify-content: center;
     padding: 0 30px;
+}
+
+
+
+.order-menu .order-container-empty{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 70%;
+}
+
+
+.order-menu .order-container-empty h2{
+    font-family: var(--main-font);
+    color:var(--purpel);
+}
+.order-menu .order-container-empty .empty-order-icon{
+    color:var(--purpel);
+    font-size: 5rem;
+    margin-bottom: 30px;
 }

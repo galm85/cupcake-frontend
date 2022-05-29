@@ -3,7 +3,7 @@ import * as React from 'react';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { CurrentOrder, State, User } from '../utils/types';
-
+import ShoppingBasketIcon from '@mui/icons-material/ShoppingBasket';
 type Props = {
     setOrderOpen:React.Dispatch<React.SetStateAction<boolean>>
     
@@ -53,9 +53,11 @@ const OrderMenu:React.FC<Props> = ({setOrderOpen})=>{
                         </div>
                     </div>
                     :
-                    <p>
-                        Order is empty
-                    </p>
+                    <div className="order-container-empty">
+                        <ShoppingBasketIcon className="empty-order-icon"/>
+                        <h2>No Items in your order yet</h2>
+                    </div>
+                    
             }
 
         </div>

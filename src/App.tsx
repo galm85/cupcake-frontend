@@ -31,7 +31,7 @@ function App() {
     <div className="app">
       
       <Drawer anchor='left' open={menuOpen} onClose={()=>setMenuOpen(false)}>
-        <Sidenav/>
+        <Sidenav setMenuOpen={setMenuOpen}/>
       </Drawer>
 
       <Drawer anchor='right' open={orderOpen} onClose={()=>setOrderOpen(false)}>
