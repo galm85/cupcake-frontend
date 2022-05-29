@@ -75,7 +75,6 @@ export const addItemToOrder = (item:any,userId:string)=>async(dispatch:any)=>{
 
 
 
-
 export const getCurrentOrder = (userId:string)=>async(dispatch:any)=>{
 
     try {
@@ -133,5 +132,22 @@ export const placeOrder = (userId:string,orderDetails:any)=>async(dispatch:any)=
             type:'setLoading',
             payload:false
         })
+    }
+}
+
+
+
+export const changeOrderStatus = (orderId:string)=>async(dispatch:any)=>{
+
+
+    try {
+        const res = await axios.patch(`${api}/orders/update-status/${orderId}`);
+        alert(res.data.message);
+        dispatch({
+            type:"changeOrderStatus",
+            payload:orderId
+        })
+    } catch (error) {
+        console.log(error);
     }
 }

@@ -1,6 +1,8 @@
 import { Button, Dialog, Grid, Table, TableHead, TableRow,TableCell,TableBody } from '@mui/material'
 import React from 'react'
-import { Order,CurrentOrder } from '../../utils/types'
+import { Order,CurrentOrder } from '../../utils/types';
+import {useDispatch} from 'react-redux';
+import { changeOrderStatus } from '../../redux/actions/orders.actions';
 
 type Props = {
     order:Order;
@@ -8,6 +10,7 @@ type Props = {
 
 const OrderDialog:React.FC<Props> = ({order})=>{
 
+    const dispatch:any = useDispatch();
     const [open,setOpen] = React.useState<boolean>(false);
     const [orderDetails,setOrderDetails] = React.useState<CurrentOrder[]>([]);
 
@@ -17,6 +20,12 @@ const OrderDialog:React.FC<Props> = ({order})=>{
     const handleClose = ():void=>{
         setOpen(false);
     }
+
+
+    const handleStatusChange = (orderId:string)=>{
+        dispatch(changeOrderStatus(orderId));
+    }
+
 
     React.useEffect(()=>{
         setOrderDetails(JSON.parse(order.items));
@@ -68,7 +77,11 @@ const OrderDialog:React.FC<Props> = ({order})=>{
                         
                     </Grid>
                     <Grid item xs={12} style={{padding:'50px'}}>
-                        <Button color="primary" variant='contained' fullWidth>Ready</Button>
+                        {order.status === 'in progress' ?
+                        <Button color="primary" variant='contained'  onClick={()=>{handleStatusChange(order._id)}} fullWidth>Ready</Button>
+                        :
+                        <Button color="primary" variant='contained' disabled fullWidth>Order Deliverd</Button>
+                    }
                     </Grid>
                </Grid>
                 

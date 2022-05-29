@@ -48,6 +48,21 @@ export const ordersReducer = (state=initialState,action:Action)=>{
                 currentOrder:[],
                 totalPriceCurrentOrder:0
             }
+
+
+        case 'changeOrderStatus':
+            return{
+                ...state,
+                ordersHistory:state.ordersHistory.map(order=>{
+                    if(order._id === action.payload){
+                        order.status = 'deliverd'
+                        return order;
+                    }
+                    else{
+                        return order;
+                    }
+                })
+            }
         
         
 

@@ -71,6 +71,7 @@ export type Order = {
     _id:string;
     items:string;
     isActive:boolean;
+    status:string;
     totalAmount:number;
     contactPerson:string,
     address:string,
