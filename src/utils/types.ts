@@ -13,8 +13,14 @@ export type State = {
     productsReducer:any;
     ordersReducer:any;
     restaurantsReducer:any;
+    jobsReducer:JobReducer;
 }
 
+
+// reducers
+export type JobReducer = {
+    jobs:Job[];
+}
 
 
 
@@ -100,4 +106,15 @@ export type Restaurant = {
     satOpen:string;
     satClose:string;
     cloudinary_id:string;   
+}
+
+
+export type Job = {
+    _id:string;
+    positionTitle:string;
+    location:string;
+    description:string;
+    requirement:string;
+    createdAt:string;
+    updatedAt:string;
 }

@@ -12,6 +12,7 @@ const DashboardNav:React.FC = ()=> {
             <NavLink to='/admin/products' className={(navdata)=>navdata.isActive ? "dashboard-link dashboard-link-active" : "dashboard-link"}>Products</NavLink>
             <NavLink to='/admin/orders' className={(navdata)=>navdata.isActive ? "dashboard-link dashboard-link-active" : "dashboard-link"}>Orders</NavLink>
             <NavLink to='/admin/restaurants' className={(navdata)=>navdata.isActive ? "dashboard-link dashboard-link-active" : "dashboard-link"}>Restaurants</NavLink>
+            <NavLink to='/admin/jobs' className={(navdata)=>navdata.isActive ? "dashboard-link dashboard-link-active" : "dashboard-link"}>Jobs</NavLink>
         </div>
     )
 }
