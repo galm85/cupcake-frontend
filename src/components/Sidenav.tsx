@@ -39,7 +39,7 @@ const Sidenav:React.FC<Props> = ({setMenuOpen})=>{
                 <NavLink className={(navdata)=>navdata.isActive ? 'sidenav-link active': 'sidenav-link'} to='/cupcakes'><CakeIcon style={{marginRight:'20px'}}/>Our Cupcaks</NavLink>
                 <NavLink className={(navdata)=>navdata.isActive ? 'sidenav-link active': 'sidenav-link'} to='/menu'><MenuBookIcon style={{marginRight:'20px'}}/>Menu</NavLink>
                 <NavLink className={(navdata)=>navdata.isActive ? 'sidenav-link active': 'sidenav-link'} to='/about-us'><InfoIcon style={{marginRight:'20px'}}/>About Us</NavLink>
-                <NavLink className={(navdata)=>navdata.isActive ? 'sidenav-link active': 'sidenav-link'} to='/restourants'><StoreIcon style={{marginRight:'20px'}}/>Restaurants</NavLink>
+                <NavLink className={(navdata)=>navdata.isActive ? 'sidenav-link active': 'sidenav-link'} to='/restaurants'><StoreIcon style={{marginRight:'20px'}}/>Restaurants</NavLink>
                 <NavLink className={(navdata)=>navdata.isActive ? 'sidenav-link active': 'sidenav-link'} to='/jobs'><WorkIcon style={{marginRight:'20px'}}/> Jobs</NavLink>
             </div>
             <Divider style={{margin:'20px 0'}}/>

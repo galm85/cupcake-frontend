@@ -8,7 +8,7 @@ import { getCurrentOrder } from './redux/actions/orders.actions';
 
 // components
 import {Navbar,Sidenav,Footer,Loading, OrderMenu} from './components';
-import { CupcakePage, HomePage, LoginPage, RegisterPage,MenuPage,CategoryPage,ProductPage, ProfilePage, CheckoutPage } from './pages';
+import { CupcakePage, HomePage, LoginPage, RegisterPage,MenuPage,CategoryPage,ProductPage, ProfilePage, CheckoutPage,RestaurantsPage } from './pages';
 import { Dashboard } from './admin';
 
 function App() {
@@ -55,6 +55,7 @@ function App() {
           <Route path='/menu/:categoryName/:productName' element={<ProductPage />} />
           <Route path='/profile' element={<ProfilePage />} />
           <Route path='/checkout' element={<CheckoutPage/>} />
+          <Route path='/restaurants' element={<RestaurantsPage/>} />
           
           
           <Route path='/admin/*' element={<Dashboard />} />

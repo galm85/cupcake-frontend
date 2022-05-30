@@ -219,3 +219,14 @@
       color: var(--text);
       font-family: var(--main-font);
   }
+
+
+
+
+
+    /* ================== restaurants Page ================= */
+
+    .restaurant-page{
+        width: 80%;
+        margin: auto;
+    }
