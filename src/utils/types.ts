@@ -7,11 +7,12 @@ export type Action= {
 
 
 export type State = {
-    categoriesReducer:any,
-    usersReducer:any,
-    settingReducer:any,
-    productsReducer:any,
-    ordersReducer:any
+    categoriesReducer:any;
+    usersReducer:any;
+    settingReducer:any;
+    productsReducer:any;
+    ordersReducer:any;
+    restaurantsReducer:any;
 }
 
 
@@ -92,8 +93,8 @@ export type Restaurant = {
     address:string;
     phone:string;
     events:boolean;
-    dayWeekOpen:string;
-    dayWeekClose:string;
+    weekdayOpen:string;
+    weekdayClose:string;
     friOpen:string;
     friClose:string;
     satOpen:string;

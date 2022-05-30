@@ -1,19 +1,20 @@
 import { Divider, Grid,Button } from '@mui/material';
 import React, { FormEvent } from 'react'
-import { Link } from 'react-router-dom';
+import { Link,useLocation } from 'react-router-dom';
 import FormFileInput from '../../../components/forms/formFileInput';
 import FormInput from '../../../components/forms/formInput';
 import FormSwitch from '../../../components/forms/formSwitch';
 import { Restaurant } from '../../../utils/types';
 import {useDispatch} from 'react-redux';
-import { postNewRestaurant } from '../../../redux/actions/restaurants.actions';
+import { editRestaurant, postNewRestaurant } from '../../../redux/actions/restaurants.actions';
 
 
 
-const NewRestaurant:React.FC = ()=>{
+const EditRestaurant:React.FC = ()=>{
 
+    const location:any = useLocation();
     const dispatch:any = useDispatch();
-    const [restaurant,setRestaurent] = React.useState<Restaurant>({} as Restaurant);
+    const [restaurant,setRestaurent] = React.useState<Restaurant>({...location.state});
 
     const handleChange = (e:any)=>{
         setRestaurent({...restaurant,[e.target.name]:e.target.value});
@@ -48,7 +49,7 @@ const NewRestaurant:React.FC = ()=>{
         }
 
 
-        dispatch(postNewRestaurant(data));
+        dispatch(editRestaurant(data,restaurant._id));
 
 
     }
@@ -58,7 +59,7 @@ const NewRestaurant:React.FC = ()=>{
 
     return (
         <div className="new-item-form">
-            <h1 className="admin-title">New Restaurant</h1>
+            <h1 className="admin-title">Edit Restaurant</h1>
 
             <form onSubmit={handleSubmit}>
                 <Grid container style={{display:'flex',justifyContent:'space-between'}}>
@@ -95,7 +96,7 @@ const NewRestaurant:React.FC = ()=>{
                     <Divider style={{height:'auto'}} flexItem={false} orientation='vertical'  />
                     
                     <Grid item xs={12} md={3}>
-                        <FormFileInput label='Upload Image' name='image' onChange={handleImage}  />
+                        <FormFileInput label='Upload Image' name='image' onChange={handleImage} value={restaurant.image}  />
                     </Grid>
 
 
@@ -114,4 +115,4 @@ const NewRestaurant:React.FC = ()=>{
 
 
 
-export default NewRestaurant;
+export default EditRestaurant;

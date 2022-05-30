@@ -9,6 +9,7 @@ import {usersReducer} from './reducers/usersReducer';
 import {categoriesReducer} from './reducers/categoriesReducer';
 import {productsReducer} from './reducers/productsReducers';
 import {ordersReducer} from './reducers/ordersReducers';
+import {restaurantsReducer} from './reducers/restaurantsReducers';
 
 export type MainState = {
     usersReducer:any
@@ -26,7 +27,8 @@ const rootReducer = combineReducers({
     usersReducer,
     categoriesReducer,
     productsReducer,
-    ordersReducer
+    ordersReducer,
+    restaurantsReducer
 })
 
 
