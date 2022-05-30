@@ -8,3 +8,4 @@ export {default as ProductPage} from './productPage';
 export {default as ProfilePage} from './profile';
 export {default as CheckoutPage} from './checkout';
 export {default as RestaurantsPage} from './restaurants';
+export {default as AboutPage} from './aboutPage';
