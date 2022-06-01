@@ -1,29 +1,37 @@
 import * as React from 'react';
-import {Link, useParams} from 'react-router-dom';
+import {Link, useParams,useNavigate} from 'react-router-dom';
 import { useDispatch,useSelector } from 'react-redux';
 import axios from 'axios';
 import { Application, Job } from '../utils/types';
-import { Button, Grid, Divider, TextField, Input } from '@mui/material';
+import { Button, Grid, Divider, TextField, Input, Dialog } from '@mui/material';
 import FormInput from '../components/forms/formInput';
 import FormSelect from '../components/forms/formSelect';
 import FormFileInput from '../components/forms/formFileInput';
+import ApplicationDialog from '../components/dialogs/applicationDialog';
+import { Loading } from '../components';
 
 
 
 const api:string | undefined = process.env.REACT_APP_API_URL;
 const genderOptions:any[] = [{_id:'male',title:'Male'},{_id:'female',title:'Female'},{_id:'other',title:'Other'}]
 const fileTypes:string[] = [".doc",".docx","application/msword","application/vnd.openxmlformats-officedocument.wordprocessingml.document","application/pdf"];
+
+
 const ApplyPage:React.FC = ()=>{
 
+    const navigate:any = useNavigate();
     const params:any = useParams();
+    
     const [job,setJob] = React.useState<Job>({} as Job)
     const [application,setApplication] = React.useState<Application>({} as Application);
     const [fileName,setFileName] = React.useState<string>('');
     const [errors,setErrors] = React.useState<Application>({} as Application);
-    
+    const [finishModal,setFinishModal] = React.useState<boolean>(false);
+    const [loading,setLoading] = React.useState<boolean>(false);
+
+
 
     React.useEffect(()=>{
-       
         const getJob = async()=>{     
             const res = await axios.get(`${api}/jobs/job-by-id/${params.job_id}`);
             setJob(res.data);
@@ -40,6 +48,7 @@ const ApplyPage:React.FC = ()=>{
         if(fileTypes.includes(file.type)){
             setFileName(file.name);
             setApplication({...application,cv:file});
+            setErrors({...errors,cv:''})
         }else{
            alert('File not match');
         }
@@ -80,33 +89,44 @@ const ApplyPage:React.FC = ()=>{
     }
 
   
-
     const handleSubmit = async (e:React.FormEvent)=>{
         e.preventDefault();
         let valid = validateForm();
         if(valid){
             const data = new FormData();
+            data.append('jobId',params.job_id);
             data.append('firstName',application.firstName);
             data.append('lastName',application.lastName);
             data.append('email',application.email);
             data.append('phone',application.phone);
             data.append('gender',application.gender);
             data.append('cv',application.cv);
-            const res = await axios.post(`${api}/applications`,data);
-            console.log(res);
+            try{
+                setLoading(true);
+                const res = await axios.post(`${api}/applications`,data);
+                setLoading(false);
+                setFinishModal(true);
+            }catch(error){
+                console.log(error)
+            }
+            
         }
 
 
     }
 
+
+    
+
     return(
        <div className="apply-page">
+           {loading && <Loading/>}
            <h1 className='page-title'>Applyment Form</h1>
            {job.positionTitle ? 
            
-       
            <Grid container>
-
+               <ApplicationDialog name={application.firstName ? application.firstName : ''} value={finishModal} />
+              
                <Grid item xs={12} md={7}>
                    <form style={{width:'100%'}} onSubmit={handleSubmit}>
                        <Grid container style={{display:'flex',justifyContent:'center'}}>
@@ -121,7 +141,7 @@ const ApplyPage:React.FC = ()=>{
                                         <Input  id="contained-button-file"  type="file" style={{display:'none'}} onChange={handleFile} />
                                         <Button variant="contained" component="span"> Upload CV</Button>
                                     </label>
-                                    {errors.cv && <p>{errors.cv}</p>}
+                                    {errors.cv && <p style={{color:'red'}}>*{errors.cv}</p>}
                                     {fileName && <p>{fileName}</p>}
                                 </div>
                            </Grid>

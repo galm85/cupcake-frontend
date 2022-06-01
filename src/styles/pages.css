@@ -233,10 +233,12 @@
 
 
 
-/* ================== restaurants Page ================= */
+/* ================== apply Page ================= */
 
-.apply-page{
-
+.apply-page form p{
+    font-family: var(--main-font);
+    font-size: 13px;
+    font-weight: var(--light);
 }
 
 @media only screen and (max-width: 900px) {
@@ -260,3 +262,5 @@
 .apply-page-job-description p{
     font-weight: var(--light);
 }
+
+

@@ -441,3 +441,27 @@
     align-items: center;
     margin-top: 10px;
 }
+
+
+
+
+/* ========== Appliaction Dialog ============ */
+.application-dialog{
+    min-width: 50%;
+    padding: 20px;
+    font-family: var(--main-font);
+}
+.application-dialog h1{
+    color: var(--purpel);
+}
+.application-dialog p{
+    font-weight: var(--light);
+    color: var(--text);
+    margin: 10px 0;
+}
+
+.application-dialog img{
+    width: 60px;
+    margin: auto;
+}
+
