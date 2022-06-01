@@ -391,3 +391,53 @@
     padding: 5px;
   
 }
+
+
+
+
+/* ============== job card =============== */
+.job-card{
+    width: 100%;
+    font-family: var(--main-font);
+    color: var(--text);
+    border: 1px solid var(--text);
+    
+    border-radius: 15px;
+    margin: 10px 0;
+    display: flex;
+}
+
+.job-card-details{
+    width: 90%;
+    padding: 10px 20px;
+    border-right: 1px solid var(--text);
+}
+
+.job-card-actions{
+    width: 10%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+
+/* ========== Job Dialog ============ */
+
+.job-dialog{
+    width: 500px;
+    padding: 30px;
+    font-family: var(--main-font);
+    color: var(--text);
+}
+
+.job-dialog h4{
+    margin: 10px 0;
+}
+
+.job-dialog-actions{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-top: 10px;
+}

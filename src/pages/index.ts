@@ -9,3 +9,5 @@ export {default as ProfilePage} from './profile';
 export {default as CheckoutPage} from './checkout';
 export {default as RestaurantsPage} from './restaurants';
 export {default as AboutPage} from './aboutPage';
+export {default as CareersPage} from './careersPage';
+export {default as ApplyPage} from './applyPage';

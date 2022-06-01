@@ -105,7 +105,9 @@ export type Restaurant = {
     friClose:string;
     satOpen:string;
     satClose:string;
-    cloudinary_id:string;   
+    cloudinary_id:string; 
+    createdAt:string;
+    updatedAt:string;  
 }
 
 
@@ -115,6 +117,22 @@ export type Job = {
     location:string;
     description:string;
     requirement:string;
+    createdAt:string;
+    updatedAt:string;
+    
+}
+
+
+export type Application = {
+    _id:string;
+    firstName:string;
+    lastName:string;
+    gender:string;
+    phone:string;
+    email:string;
+    cv:string;
+    jobId:string;
+    cloudinary_id:String;
     createdAt:string;
     updatedAt:string;
 }
