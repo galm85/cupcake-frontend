@@ -18,6 +18,7 @@ export {default as EditRestaurant} from './pages/restaurants/editRestaurant';
 export {default as JobsAdmin} from './pages/jobs/jobs';
 export {default as NewJob} from './pages/jobs/newJob';
 export {default as EditJob} from './pages/jobs/editJob';
+export {default as ApplicationsAdmin} from './pages/jobs/applications';
 
 
 

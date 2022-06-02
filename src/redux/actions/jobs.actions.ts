@@ -70,7 +70,7 @@ export const postNewJob = (data:Job)=>async(dispatch:any)=>{
 }
 
 export const editJob = (data:Job,jobId:string)=>async(dispatch:any)=>{
-
+       
     try {
         dispatch({
             type:'setLoading',

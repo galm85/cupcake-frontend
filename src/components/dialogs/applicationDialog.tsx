@@ -33,4 +33,4 @@ const ApplicationDialog:React.FC<Props> = ({name,value})=>{
 }
 
 
-export default ApplicationDialog;
+export default React.memo(ApplicationDialog);

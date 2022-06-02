@@ -7,6 +7,7 @@ import { Table, TableBody, TableCell, TableHead, TableRow,Button } from '@mui/ma
 import { useNavigate } from 'react-router-dom';
 import CheckIcon from '@mui/icons-material/Check';
 import DoNotDisturbAltIcon from '@mui/icons-material/DoNotDisturbAlt';
+import ConfirmDialog from '../../../components/dialogs/confirmDialog';
 
 const RestaurantAdmin:React.FC = ()=>{
 
@@ -16,6 +17,11 @@ const RestaurantAdmin:React.FC = ()=>{
 
     React.useEffect(()=>{
         dispatch(getAllRestaurants());
+    },[])
+
+
+    const handleDelete = React.useCallback((id:string)=>{
+        alert(id);
     },[])
 
 
@@ -52,7 +58,7 @@ const RestaurantAdmin:React.FC = ()=>{
                                 {restaurant.satOpen !== 'undefined' ? <TableCell>{restaurant.satOpen} - {restaurant.satClose}</TableCell> : <TableCell>Close</TableCell> } 
                                 <TableCell>{restaurant.events ? <CheckIcon color="success"/> :<DoNotDisturbAltIcon color="error"/>}</TableCell>
                                 <TableCell><button onClick={()=>navigate('/admin/restaurants/edit-restaurant',{state:restaurant})} className="btn edit-btn">Edit</button></TableCell>
-                                <TableCell><button className="btn delete-btn">Delete</button></TableCell>
+                                <TableCell> <ConfirmDialog label='Delete' title='Delete this Restaurent?' fc={()=>handleDelete(restaurant._id)} /> </TableCell>
 
                             </TableRow>
                         ))}

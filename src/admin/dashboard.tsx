@@ -1,7 +1,7 @@
 import React from 'react';
 import { Routes,Route } from 'react-router-dom';
 
-import {DashboardNav,CategoriesAdmin,NewCategory,ProductsAdmin,NewProduct,EditCategory,EditProduct,OrdersAdmin,RestaurantAdmin,NewRestaurant,EditRestaurant,JobsAdmin, NewJob,EditJob} from './index';
+import {DashboardNav,CategoriesAdmin,NewCategory,ProductsAdmin,NewProduct,EditCategory,EditProduct,OrdersAdmin,RestaurantAdmin,NewRestaurant,EditRestaurant,JobsAdmin, NewJob,EditJob,ApplicationsAdmin} from './index';
 
 
 
@@ -32,6 +32,7 @@ const Dashboard:React.FC = ()=>{
                    <Route path='jobs' element={<JobsAdmin/>}/>
                    <Route path='jobs/new-job' element={<NewJob/>}/>
                    <Route path='jobs/edit-job' element={<EditJob/>}/>
+                   <Route path='jobs/applications/:jobId' element={<ApplicationsAdmin/>}/>
 
                    <Route path='orders' element={<OrdersAdmin/>}/>
 

@@ -14,7 +14,7 @@ import { Loading } from '../components';
 
 const api:string | undefined = process.env.REACT_APP_API_URL;
 const genderOptions:any[] = [{_id:'male',title:'Male'},{_id:'female',title:'Female'},{_id:'other',title:'Other'}]
-const fileTypes:string[] = [".doc",".docx","application/msword","application/vnd.openxmlformats-officedocument.wordprocessingml.document","application/pdf"];
+const fileTypes:string[] = [".doc",".docx","application/msword","application/vnd.openxmlformats-officedocument.wordprocessingml.document"];
 
 
 const ApplyPage:React.FC = ()=>{
@@ -50,7 +50,7 @@ const ApplyPage:React.FC = ()=>{
             setApplication({...application,cv:file});
             setErrors({...errors,cv:''})
         }else{
-           alert('File not match');
+           alert('File not match. doc/docx files only');
         }
     }
 
@@ -122,60 +122,61 @@ const ApplyPage:React.FC = ()=>{
        <div className="apply-page">
            {loading && <Loading/>}
            <h1 className='page-title'>Applyment Form</h1>
+           
            {job.positionTitle ? 
            
-           <Grid container>
-               <ApplicationDialog name={application.firstName ? application.firstName : ''} value={finishModal} />
-              
-               <Grid item xs={12} md={7}>
-                   <form style={{width:'100%'}} onSubmit={handleSubmit}>
-                       <Grid container style={{display:'flex',justifyContent:'center'}}>
-                           <Grid item xs={12} md={7}>
-                                <FormInput name="firstName" label='First Name' error={errors.firstName} helperText={errors.firstName} onChange={handleChange} value={application.firstName}/>
-                                <FormInput name="lastName" label='Last Name' error={errors.lastName} helperText={errors.lastName} onChange={handleChange} value={application.lastName}/>
-                                <FormSelect name="gender" label='Gender' error={errors.gender} onChange={handleChange} options={genderOptions} value={application.gender}/>
-                                <FormInput name="phone" label='Phone' error={errors.phone} helperText={errors.phone} onChange={handleChange} value={application.phone}/>
-                                <FormInput name="email" label='Email' error={errors.email} helperText={errors.email} onChange={handleChange} value={application.email}/>
-                                <div style={{display:'flex',justifyContent:'space-between',alignItems:'center',margin:'20px 0'}}>
-                                    <label htmlFor="contained-button-file">
-                                        <Input  id="contained-button-file"  type="file" style={{display:'none'}} onChange={handleFile} />
-                                        <Button variant="contained" component="span"> Upload CV</Button>
-                                    </label>
-                                    {errors.cv && <p style={{color:'red'}}>*{errors.cv}</p>}
-                                    {fileName && <p>{fileName}</p>}
-                                </div>
-                           </Grid>
-                           
-                           <Grid item xs={12}>
-                           <Divider style={{margin:'20px 50px'}} />
-                           </Grid>
+                <Grid container>
+                    
+                    <ApplicationDialog name={application.firstName ? application.firstName : ''} value={finishModal} />
+                    
+                    <Grid item xs={12} md={7}>
+                        <form style={{width:'100%'}} onSubmit={handleSubmit}>
+                            <Grid container style={{display:'flex',justifyContent:'center'}}>
+                                <Grid item xs={12} md={7}>
+                                        <FormInput name="firstName" label='First Name' error={errors.firstName} helperText={errors.firstName} onChange={handleChange} value={application.firstName}/>
+                                        <FormInput name="lastName" label='Last Name' error={errors.lastName} helperText={errors.lastName} onChange={handleChange} value={application.lastName}/>
+                                        <FormSelect name="gender" label='Gender' error={errors.gender} onChange={handleChange} options={genderOptions} value={application.gender}/>
+                                        <FormInput name="phone" label='Phone' error={errors.phone} helperText={errors.phone} onChange={handleChange} value={application.phone}/>
+                                        <FormInput name="email" label='Email' error={errors.email} helperText={errors.email} onChange={handleChange} value={application.email}/>
+                                        <div style={{display:'flex',justifyContent:'space-between',alignItems:'center',margin:'20px 0'}}>
+                                            <label htmlFor="contained-button-file">
+                                                <Input  id="contained-button-file"  type="file" style={{display:'none'}} onChange={handleFile} />
+                                                <Button variant="contained" component="span"> Upload CV</Button>
+                                            </label>
+                                            {errors.cv && <p style={{color:'red'}}>*{errors.cv}</p>}
+                                            {fileName && <p>{fileName}</p>}
+                                        </div>
+                                </Grid>
+                                
+                                <Grid item xs={12}>
+                                        <Divider style={{margin:'20px 50px'}} />
+                                </Grid>
 
-                           <Grid item xs={12} style={{display:'flex',justifyContent:'space-around'}}>
-                               
-                                <Link style={{textDecoration:'none'}} to='/careers'><Button type="button" variant="outlined">Return</Button></Link>
-                                <Button type="submit" variant="contained">Apply</Button>
-                           </Grid>
-                       </Grid>
-                   </form>
-               </Grid>
-               
-               <Grid item xs={12} md={4}>
-                   <div className='apply-page-job-description'>
-                        <h1>{job.positionTitle}</h1>
-                        <h3>Location:{job.location}</h3>
-                        <h3>Job Description</h3>
-                        <p>{job.description}</p>
-                        <h3>Requierments</h3>
-                        <p>{job.requirement}</p>
-                   </div>
-               </Grid>
+                                <Grid item xs={12} style={{display:'flex',justifyContent:'space-around'}}>
+                                        <Link style={{textDecoration:'none'}} to='/careers'><Button type="button" variant="outlined">Return</Button></Link>
+                                        <Button type="submit" variant="contained">Apply</Button>
+                                </Grid>
+                            </Grid>
+                        </form>
+                    </Grid>
+                    
+                    <Grid item xs={12} md={4}>
+                        <div className='apply-page-job-description'>
+                                <h1>{job.positionTitle}</h1>
+                                <h3>Location:{job.location}</h3>
+                                <h3>Job Description</h3>
+                                <p>{job.description}</p>
+                                <h3>Requierments</h3>
+                                <p>{job.requirement}</p>
+                        </div>
+                    </Grid>
 
-           </Grid>
+                </Grid>
            
             :
-            <div>
-               <h3 className="page-title" style={{fontSize:'20px'}}>The Job Not available anymore</h3>
-            </div>
+                <div>
+                <h3 className="page-title" style={{fontSize:'20px'}}>The Job Not available anymore</h3>
+                </div>
             }
        </div>
     )
