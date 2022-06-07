@@ -43,6 +43,12 @@ export const productsReducer = (state=initialState,action:Action)=>{
                 product:action.payload
             }
 
+        case 'getCupcakes':
+            return{
+                ...state,
+                products:action.payload
+            }
+
 
         default: return state
         

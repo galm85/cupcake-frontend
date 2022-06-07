@@ -40,7 +40,7 @@ const ProductPage:React.FC = ()=>{
     return(
         <div className="product-page">
             
-            <BreadCrumbs currentPage='Pasta Napolitana' links={breadLinks} />
+            <BreadCrumbs currentPage={product.title} links={breadLinks} />
               
             <Grid container className="product-page-container" style={{width:'80%',margin:'auto'}}>
                 

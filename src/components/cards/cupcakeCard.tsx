@@ -1,27 +1,27 @@
-import { Grid } from '@mui/material';
-import { borderRadius, height } from '@mui/system';
-import * as React from 'react';
-
+import React from 'react'
+import { Product } from '../../utils/types';
+import {useNavigate} from 'react-router-dom'
 
 type Props = {
-    image:string;
+    cupcake:Product;
 }
 
+const CupcakeCard:React.FC<Props> = ({cupcake})=>{
 
-const CupcakeCard = ({image}:Props)=>{
+    const navigate:any = useNavigate();
+
     return(
-        <Grid item xs={4}>
-            <img 
-                src={`./images/${image}`} alt="cupcake image" 
-                style={{
-                    width: '200px',
-                    height:'200px',
-                    objectFit:'cover',
-                    borderRadius:'50%',
-                }}
-                />
-        </Grid>
+        <div className="cupcake-card" onClick={()=>navigate(`/menu/cupcakes/${cupcake.title.toLowerCase()}`,{state:{product:cupcake,catTitle:'Cupcakes'}})} >
+            <img src={cupcake.image} alt={cupcake.title} />
+            <div className="cupcake-card-data">
+                <h2>{cupcake.title}</h2>
+                <p>{cupcake.description}</p>
+                <h4>${cupcake.price}</h4>
+            </div>
+        </div>
     )
 }
 
-export default CupcakeCard
+
+
+export default CupcakeCard;

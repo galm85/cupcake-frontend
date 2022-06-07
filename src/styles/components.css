@@ -422,6 +422,50 @@
 }
 
 
+
+
+/* ============== Cupcake card =============== */
+.cupcake-card{
+    width: 100%;
+    height: 200px;
+    display: flex;
+    justify-content: center;
+    cursor: pointer;
+    border-radius: 4px;
+    overflow: hidden;
+    transition-duration: 0.2s;
+}
+
+.cupcake-card:hover{
+    border: 1px solid var(--purpel);
+
+}
+
+.cupcake-card img{
+    width: 40%;
+    height: 100%;
+    object-fit: cover;
+}
+
+
+.cupcake-card .cupcake-card-data{
+    width: 60%;
+    padding: 10px 20px;
+    font-family: var(--main-font);
+}
+.cupcake-card .cupcake-card-data h2{
+    width: 100%;
+    font-size: 2em;
+    font-family: var(--spacial-font);
+}
+
+
+
+
+
+
+
+
 /* ========== Job Dialog ============ */
 
 .job-dialog{
@@ -465,3 +509,155 @@
     margin: auto;
 }
 
+
+/* ========== Legal Dialog ============ */
+.legal-dialog{
+    padding:20px;
+    font-family: var(--main-font);
+    color:var(--text);
+}
+
+.legal-dialog h2{
+    text-align: center;
+}
+.legal-dialog p{
+    margin:20px 0;
+}
+.legal-dialog .legal-dialog-action{
+    display: flex;
+    justify-content: center;
+}
+
+.legal-dialog-link{
+    color:white;
+    margin: 0 10px;
+}
+
+
+/* ============ footer =========== */
+.footer{
+    min-height: 100%;
+    background-color: black;
+    font-family: var(--main-font);
+}
+
+
+.footer-information{
+}
+
+.footer-information h3{
+    font-family: var(--spacial-font);
+    font-weight: var(--bold);
+    font-size: 30px;
+    color: white;
+}
+
+.footer-navigation{
+  
+}
+
+.footer-navigation a{
+    color: white;
+    margin:5px 0;
+    font-weight: var(--light);
+    font-size: 20px;
+}
+
+
+.footer .social-media{
+    display: flex;
+    justify-content: space-between;
+
+}
+
+.footer .social-media a{
+    color: white;
+    font-size: 30px;
+
+}
+
+.footer .legal-items{
+    margin:50px 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: aliceblue;
+    background-color: rgba(255, 255, 255, 0.102);
+}
+
+
+
+
+.footer .author-information{
+    text-align: center;
+    margin-bottom: 50px;
+    
+}
+
+.footer .author-information p{
+    color: white;
+    font-weight: var(--light);
+    font-size: 14px;
+}
+
+.footer .author-information a{
+    color:var(--cyan);
+    font-weight: var(--bold);
+}
+
+
+
+
+
+
+
+/* ============ Rotate Text =========== */
+
+/* .rotate-text-circle{
+    position: relative;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+} */
+
+/* .rotate-text-image{
+    position: absolute;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+} */
+
+.rotate-text-image img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.rotate-text-text{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    animation: rotateText 10s linear infinite;
+    
+}
+
+@keyframes rotateText {
+  0%{
+      transform: rotate(360deg);
+  }
+  100%{
+      transform: rotate(0);
+  }
+}
+
+.rotate-text-text span{
+    position: absolute;
+    left: 50%;
+    color: var(--text);
+}

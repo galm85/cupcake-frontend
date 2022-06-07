@@ -1,5 +1,11 @@
 //redux types
 
+export type LegalData = {
+    label:string;
+    text:string;
+    image?:string;
+}
+
 export type Action= {
     type:string;
     payload?:any;

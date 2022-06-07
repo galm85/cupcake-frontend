@@ -101,6 +101,41 @@ export const getProductsByCategory = (id:string)=>async(dispatch:any)=>{
 }
 
 
+export const getCupcakes= ()=>async(dispatch:any)=>{
+
+    try {
+        
+        dispatch({
+            type:'setLoading',
+            payload:true
+        })
+
+        const res =  await axios.get(`${api}/products/get-products/get-cupcakes`);
+        dispatch({
+            type:'getCupcakes',
+            payload:res.data
+        })
+
+        dispatch({
+            type:'setLoading',
+            payload:false
+        })
+
+    } catch (error:any) {
+        
+        console.log(error.response.data.message);
+        
+        dispatch({
+            type:'setLoading',
+            payload:false
+        })
+
+    }
+
+
+}
+
+
 
 export const getSingleProduct = (id:string)=>async(dispatch:any)=>{
 
