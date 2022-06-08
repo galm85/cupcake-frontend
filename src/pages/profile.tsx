@@ -1,13 +1,22 @@
-import { Divider, Grid } from '@mui/material';
+import { Divider, Grid, Table, TableHead, TableRow } from '@mui/material';
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch,useSelector } from 'react-redux';
+import OrderCard from '../components/cards/orderCard';
+import { getAllOrdersPerUser } from '../redux/actions/orders.actions';
 import { CurrentOrder, State, User } from '../utils/types';
-
+import {Order} from '../utils/types';
 
 const ProfilePage:React.FC = ()=>{
 
+    const dispatch:any = useDispatch();
     const user:User = useSelector((state:State)=>state.usersReducer.currentUser);
-    const {currentOrder,totalPriceCurrentOrder} = useSelector((state:State)=>state.ordersReducer);
+    const {currentOrder,totalPriceCurrentOrder,ordersHistory} = useSelector((state:State)=>state.ordersReducer);
+
+    React.useEffect(()=>{
+        dispatch(getAllOrdersPerUser(user._id));
+    },[])
+
+
 
     return (
         <div className="profile-page">
@@ -17,7 +26,7 @@ const ProfilePage:React.FC = ()=>{
                     <img src={user.image}  alt={user.firstName} />
                 </Grid>
                 <Grid item xs={12} md={8} className="user-details">
-                        <h2>{user.firstName} {user.lastName}</h2>
+                        <h1>{user.firstName} {user.lastName}</h1>
                         <h4>{user.email}</h4>
                 </Grid>
             </Grid>
@@ -25,19 +34,15 @@ const ProfilePage:React.FC = ()=>{
             <Divider/>
 
             <Grid container>
-                <h3>My Order</h3>
-                {currentOrder && currentOrder.map((order:CurrentOrder)=>(
-                    <div key={order._id}>
-                        <img src={order.image} width="50px" alt={order.title} />
-                        <p>${order.price} x ${order.amount} = ${order.price*order.amount}</p>
-                    </div>
-                ))}
-                <h3>Total: ${totalPriceCurrentOrder}</h3>
-            </Grid>
-
-            <Grid container>
                 <Grid item xs={12}>
-                    <h3>Orders History</h3>
+                    <h2>Orders History</h2>
+                    <Grid container style={{display:'flex',justifyContent:'center'}}>
+                    {ordersHistory && ordersHistory.map((order:Order)=>(
+                        <Grid item xs={10} key={order._id}>
+                            <OrderCard  order={order}/>
+                        </Grid>
+                        ))}
+                    </Grid>
                 </Grid>
             </Grid>
         </div>

@@ -63,6 +63,14 @@ export const ordersReducer = (state=initialState,action:Action)=>{
                     }
                 })
             }
+
+
+        
+            case 'getAllOrdersPerUser':
+                return{
+                    ...state,
+                    ordersHistory:action.payload
+                }
         
         
 

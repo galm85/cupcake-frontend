@@ -460,6 +460,41 @@
 }
 
 
+/* ============ Order Card =========== */
+.order-card{
+    display: flex;
+    justify-content: space-between;
+    font-family: var(--main-font);
+    margin:50px 0;
+    border: 1px solid var(--purpel);
+    padding: 10px;
+    border-radius: 10px;
+    color: var(--text);
+}
+
+.order-card-information{
+    width: 30%;
+}
+
+.order-card-items{
+ flex: 1;
+ padding: 0 20px;
+ border-right: 1px solid var(--purpel);
+ border-left: 1px solid var(--purpel);
+}
+
+.order-card-item{
+    display: flex;
+}
+
+
+.order-card-status{
+   padding:0 20px;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   justify-content: center;
+}
 
 
 

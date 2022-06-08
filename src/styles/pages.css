@@ -309,6 +309,14 @@
       background-color: var(--background);
       display: flex;
       flex-direction: column;
+      padding-bottom: 50px;
+  }
+
+  .profile-page h2{
+      font-family: var(--spacial-font);
+      color: var(--purpel);
+      text-align: center;
+      margin-top: 20px;
   }
 
   .profile-page .user-data{

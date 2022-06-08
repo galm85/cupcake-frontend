@@ -155,3 +155,40 @@ export const changeOrderStatus = (orderId:string)=>async(dispatch:any)=>{
         console.log(error);
     }
 }
+
+
+
+
+
+export const getAllOrdersPerUser = (userId:string)=>async(dispatch:any)=>{
+
+    try {
+        dispatch({
+            type:'setLoading',
+            payload:true
+        })
+
+       
+        const res = await axios.get(`${api}/orders/get-order-by-user/${userId}`);
+
+        dispatch({
+            type:'getAllOrdersPerUser',
+            payload:res.data
+        })
+
+
+        dispatch({
+            type:'setLoading',
+            payload:false
+        })
+
+    } catch (error) {
+        console.log(error);
+        dispatch({
+            type:'setLoading',
+            payload:false
+        })
+    }
+
+    
+}
