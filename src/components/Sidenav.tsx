@@ -43,7 +43,7 @@ const Sidenav:React.FC<Props> = ({setMenuOpen})=>{
                 <NavLink className={(navdata)=>navdata.isActive ? 'sidenav-link active': 'sidenav-link'} to='/careers'><WorkIcon style={{marginRight:'20px'}}/> Careers</NavLink>
             </div>
             <Divider style={{margin:'20px 0'}}/>
-            <div className="sidenav-links">
+            <div className="sidenav-links" onClick={()=>setMenuOpen(false)}>
                 {currentUser ? <>
                     {currentUser.isAdmin && <NavLink className={(navdata)=>navdata.isActive ? 'sidenav-link active': 'sidenav-link'} to='/admin'><AdminPanelSettingsIcon style={{marginRight:'20px'}}/>Admin Panel</NavLink>}
                     <NavLink className={(navdata)=>navdata.isActive ? 'sidenav-link active': 'sidenav-link'} to='/profile'><AccountCircleIcon style={{marginRight:'20px'}}/>My Account</NavLink>

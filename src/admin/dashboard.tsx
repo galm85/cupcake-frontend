@@ -2,6 +2,7 @@ import React from 'react';
 import { Routes,Route } from 'react-router-dom';
 
 import {DashboardNav,CategoriesAdmin,NewCategory,ProductsAdmin,NewProduct,EditCategory,EditProduct,OrdersAdmin,RestaurantAdmin,NewRestaurant,EditRestaurant,JobsAdmin, NewJob,EditJob,ApplicationsAdmin} from './index';
+import MainScreen from './pages/mainScreen';
 
 
 
@@ -15,6 +16,8 @@ const Dashboard:React.FC = ()=>{
             </section>
             <section className="dashboard-main">
                <Routes>
+
+                   <Route path='/' element={<MainScreen/>}/>
 
                    <Route path='categories' element={<CategoriesAdmin/>}/>
                    <Route path='categories/new-category' element={<NewCategory/>}/>
@@ -36,9 +39,9 @@ const Dashboard:React.FC = ()=>{
 
                    <Route path='orders' element={<OrdersAdmin/>}/>
 
-                   
-                
+
                </Routes>
+
             </section>
         </div>
     )

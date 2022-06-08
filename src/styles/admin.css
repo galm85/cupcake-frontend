@@ -235,3 +235,33 @@
     color:var(--text);
     margin:20px 0;
 }
+
+
+
+
+
+/* ==================== Main Screen ========================= */
+.main-screen{
+    width: 100%;
+    min-height: 80vh;
+    
+}
+
+.main-screen .main-screen-link-box{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    font-family: var(--main-font);
+    border: 1px solid var(--text);
+    height: 150px;
+    margin: 30px 50px;
+    border-radius: 20px;
+    transition: all ease 0.2s;
+}
+
+.main-screen .main-screen-link-box:hover{
+    color: white;
+    background-color: var(--purpel);
+}
+
