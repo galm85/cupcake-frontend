@@ -204,6 +204,67 @@
   
 
 
+/* ============== About Page ============= */
+.about-page{
+    width: 80%;
+    min-height: 80vh;
+    padding: 100px;
+    margin: auto;
+    font-family: var(--main-font)
+}
+
+.about-page .begin h2{
+    text-align: center;
+    color: var(--orange);
+}
+
+.about-page .begin p{
+    font-weight: var(--light);
+    margin:30px 0;
+}
+
+.about-page .begin-image{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.about-page .begin-image img{
+    width: 50%;
+    border-radius: 20px;
+}
+
+
+.about-page-review{
+    background-color: rgb(252, 228, 170);
+    border: 1px solid var(--text);
+    border-radius: 20px;
+    text-align: center;
+    margin:20px 10px;
+    padding: 10px;
+}
+
+.about-page .reviews{
+    margin: 50px 0;
+}
+
+.about-page .reviews h2{
+    text-align: center;
+    color: var(--orange);
+}
+
+.about-page-review h3{
+    font-style: italic;
+    font-weight: var(--normal);
+    color: var(--text);
+}
+
+.about-page-review h5{
+    font-weight: var(--light);
+    margin-top: 20px;
+    color: var(--text);
+}
+
 
 /* ============== Category Page ============= */
 .category-page{
