@@ -11,6 +11,8 @@ const HomePage:React.FC = ()=>{
     const textRef = React.useRef<any>(null);
     const menuImage = React.useRef<any>(null);
     const cupcakeRef = React.useRef<any>(null);
+    const headerRef = React.useRef<any>(null);
+    const logoRef = React.useRef<any>(null);
 
     const scrollAnimation = ():void=>{
         window.onscroll = ()=>{
@@ -28,12 +30,22 @@ const HomePage:React.FC = ()=>{
          scrollAnimation();
 
         setTimeout(()=>{
-            cakeRef.current.style.bottom = "-50px"; 
+            cakeRef.current.style.bottom = "0"; 
+            headerRef.current.style.left = "70%"
            
             setTimeout(()=>{
                 textRef.current.style.opacity = 1;
             },2000) 
-        },500)
+
+            setTimeout(()=>{
+                 headerRef.current.style.top = "40%"
+                
+            },1500)
+            setTimeout(()=>{
+                 
+                 logoRef.current.style.opacity = 1
+            },2500)
+        },1000)
        
     },[])
 
@@ -46,7 +58,11 @@ const HomePage:React.FC = ()=>{
                 <img className='stewberry-image stewberry-1' src="./images/strewberry.png"  alt="" />
                 <img className='background-image' src="./images/homePageBanner.png" alt="cupcake banner" />
                 <img ref={cakeRef} className='cupcake-image' src="./images/choclate_cake.png" alt="" />    
-                <h1>The CupCake Factory</h1>
+              
+                <div className="header-title" ref={headerRef}>
+                <h1 >The CupCake Factory </h1>
+                <img className='logo-image' ref={logoRef} width='40%' src="./images/cupcake-logo.png" alt="" />
+                </div>
                 <h2 ref={textRef} >Eat what you like</h2>
             </section>
           

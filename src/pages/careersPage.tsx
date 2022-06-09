@@ -21,11 +21,11 @@ const CareersPage:React.FC = ()=>{
     return(
         <div className="careers-page">
             <BreadCrumbs currentPage='Careers' links={[{label:'Home',link:'/'}]}/>
-            <h1 className="page-title">Careers</h1>
+            <h1 className="page-title">Come work with us</h1>
 
-            <Grid container style={{display:'flex',justifyContent:'center'}}>
+            <Grid container spacing={5} style={{display:'flex',justifyContent:'space-around'}}>
                 {jobs && jobs.map((job)=>(
-                    <Grid item xs={10} key={job._id}>
+                    <Grid item xs={10} md={4} key={job._id}>
                         <JobCard job={job}/>
                     </Grid>
 

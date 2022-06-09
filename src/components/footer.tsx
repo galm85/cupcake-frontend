@@ -24,12 +24,12 @@ const Footer:React.FC = ()=>{
                       <Grid container style={{display:'flex',justifyContent:'space-between'}}>
                           <Grid item xs={6} style={{display:'flex',flexDirection:'column'}}>
                             <Link to='/'>Home</Link>
-                            <Link to='/'>Cupcakes</Link>
-                            <Link to='/'>Menu</Link>
+                            <Link to='/cupcakes'>Cupcakes</Link>
+                            <Link to='/menu'>Menu</Link>
                           </Grid>
                           <Grid item xs={6} style={{display:'flex',flexDirection:'column'}}>
-                            <Link to='/'>Restaurants</Link>
-                            <Link to='/'>Careers</Link>
+                            <Link to='/restaurants'>Restaurants</Link>
+                            <Link to='/careers'>Careers</Link>
                           </Grid>
                       </Grid>
                   </div>
