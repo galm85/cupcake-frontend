@@ -19,9 +19,11 @@ const initialState:UserReducerState = {
 export const usersReducer = (state=initialState,action:Action)=>{
     switch(action.type){
 
-        
-
-
+        case 'getUserData':
+            return{
+                ...state,
+                currentUser:action.payload
+            }
         default: return state
     }
 

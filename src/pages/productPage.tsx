@@ -1,18 +1,19 @@
 import React from 'react'
-import { useLocation } from 'react-router-dom';
+import { useLocation,useNavigate } from 'react-router-dom';
 import { Button, Divider, Grid } from '@mui/material';
 import { Product, State, User } from '../utils/types';
 import CheckIcon from '@mui/icons-material/Check';
 import ClearIcon from '@mui/icons-material/Clear';
 import BreadCrumbs, { BreadCrumbsLink } from '../components/Breadcrumbs';
-import axios from 'axios';
 import { useSelector,useDispatch } from 'react-redux';
 import { addItemToOrder } from '../redux/actions/orders.actions';
+import { getUserData } from '../redux/actions/users.actions';
 
 
 
 const ProductPage:React.FC = ()=>{
 
+    const navigate:any = useNavigate();
     const location:any = useLocation();
     const dispatch:any = useDispatch();
     const catTitle:string = location.state.catTitle;
@@ -28,13 +29,15 @@ const ProductPage:React.FC = ()=>{
 
     const handleAddItem = async(product:Product)=>{
 
-
         let item:any = {...product};
         item.amount = 1;
         dispatch(addItemToOrder(item,user._id));
-        // const res = await axios.patch(`http://localhost:4000/orders/current-order/${user._id}`,item);
 
     }
+
+    React.useEffect(()=>{
+        dispatch(getUserData());
+    },[])
     
 
     return(
@@ -57,7 +60,11 @@ const ProductPage:React.FC = ()=>{
                     </div>
 
                     <div className="product-page-actions">
-                        <Button variant="contained" onClick={()=>handleAddItem(product)}>Add To Order</Button>
+                        {user ? 
+                            <Button variant="contained" onClick={()=>handleAddItem(product)}>Add To Order</Button>
+                        :
+                            <Button variant="contained" color='info' onClick={()=>navigate(`/login?url=${location.pathname}`,{state:location.state})}  >Sign in first</Button>
+                        }
                     </div>
                 </Grid>
                 <Grid item xs={12} md={4} className="product-page-right">

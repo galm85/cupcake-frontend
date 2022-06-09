@@ -47,7 +47,7 @@ const Sidenav:React.FC<Props> = ({setMenuOpen})=>{
                 {currentUser ? <>
                     {currentUser.isAdmin && <NavLink className={(navdata)=>navdata.isActive ? 'sidenav-link active': 'sidenav-link'} to='/admin'><AdminPanelSettingsIcon style={{marginRight:'20px'}}/>Admin Panel</NavLink>}
                     <NavLink className={(navdata)=>navdata.isActive ? 'sidenav-link active': 'sidenav-link'} to='/profile'><AccountCircleIcon style={{marginRight:'20px'}}/>My Account</NavLink>
-                    <NavLink className={(navdata)=>navdata.isActive ? 'sidenav-link active': 'sidenav-link'} to='#' onClick={()=>{sessionStorage.removeItem('cupcake');window.location.href='./'}}><LogoutIcon style={{marginRight:'20px'}}/> Logout</NavLink>
+                    <NavLink className={(navdata)=>navdata.isActive ? 'sidenav-link active': 'sidenav-link'} to='#' onClick={()=>{sessionStorage.removeItem('cupcake');window.location.href='/'}}><LogoutIcon style={{marginRight:'20px'}}/> Logout</NavLink>
                 </>
                 :
                 <NavLink className={(navdata)=>navdata.isActive ? 'sidenav-link active': 'sidenav-link'} to='/login'><LoginIcon style={{marginRight:'20px'}}/> Login</NavLink>

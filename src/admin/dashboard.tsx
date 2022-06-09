@@ -1,5 +1,8 @@
 import React from 'react';
-import { Routes,Route } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { Routes,Route,useNavigate } from 'react-router-dom';
+import { State, User } from '../utils/types';
+
 
 import {DashboardNav,CategoriesAdmin,NewCategory,ProductsAdmin,NewProduct,EditCategory,EditProduct,OrdersAdmin,RestaurantAdmin,NewRestaurant,EditRestaurant,JobsAdmin, NewJob,EditJob,ApplicationsAdmin} from './index';
 import MainScreen from './pages/mainScreen';
@@ -9,8 +12,19 @@ import MainScreen from './pages/mainScreen';
 
 const Dashboard:React.FC = ()=>{
 
+
+    const navigate:any = useNavigate();
+    const user:User = useSelector((state:State)=>state.usersReducer.currentUser);
+    
+    React.useEffect(()=>{
+        if(!user || !user.isAdmin){
+            navigate('/');
+        }
+    },[])
+
     return(
         <div className="dashboard">
+            {user && user.isAdmin && <>
             <section className="dashboard-header">
                <DashboardNav />
             </section>
@@ -43,6 +57,7 @@ const Dashboard:React.FC = ()=>{
                </Routes>
 
             </section>
+            </>}
         </div>
     )
 }

@@ -1,16 +1,29 @@
 import React, { FormEvent } from 'react'
 import FormInput from '../components/forms/formInput';
 import { Button } from '@mui/material';
-import { Link } from 'react-router-dom';
+import { Link,useSearchParams,useLocation,useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 
 const LoginPage:React.FC = ()=>{
 
+    const location:any = useLocation();
+    const navigate:any = useNavigate();
+    console.log(location.state);
     const [user,setUser] = React.useState<any>({});
     const [errors,setErrors] = React.useState<any>({});
     const [loading,setLoading] = React.useState<boolean>(false);
     const [response,setResponse] = React.useState<string>('');
+    const [from,setFrom] = React.useState<string>('');
+    
+    const [searchParams] = useSearchParams();
+    
+
+    React.useEffect(()=>{
+        if(searchParams.get('url')){
+            setFrom(String(searchParams.get('url')));
+          }
+    },[])
 
 
     const handleChange = (e:any):void => {
@@ -49,7 +62,14 @@ const LoginPage:React.FC = ()=>{
                 let token:string = res.data.token;
                 alert('welcome')
                 sessionStorage.setItem('cupcake',token);
-                window.location.href ='./';
+                if(from){
+                    navigate(`${from}`,{state:location.state});
+
+                }else{
+                    window.location.href = './';
+                }
+
+              
             }catch(error:any){
                setResponse(error.response.data.message);
             }
