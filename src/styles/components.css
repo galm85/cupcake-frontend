@@ -695,4 +695,6 @@
     position: absolute;
     left: 50%;
     color: var(--text);
+    font-family: var(--main-font);
+    font-weight: var(--light);
 }

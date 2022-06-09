@@ -1,6 +1,7 @@
 import { Divider, Grid, Table, TableHead, TableRow } from '@mui/material';
 import React from 'react';
 import { useDispatch,useSelector } from 'react-redux';
+import BreadCrumbs from '../components/Breadcrumbs';
 import OrderCard from '../components/cards/orderCard';
 import { getAllOrdersPerUser } from '../redux/actions/orders.actions';
 import { CurrentOrder, State, User } from '../utils/types';
@@ -20,7 +21,7 @@ const ProfilePage:React.FC = ()=>{
 
     return (
         <div className="profile-page">
-
+            <BreadCrumbs currentPage='My Account' links={[{label:'Home',link:'/'}]}/>
             <Grid container className="user-data">
                 <Grid item xs={12} md={4} className="user-image">
                     <img src={user.image}  alt={user.firstName} />

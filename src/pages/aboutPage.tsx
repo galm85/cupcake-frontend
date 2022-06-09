@@ -1,11 +1,13 @@
 import { Divider, Grid } from '@mui/material';
 import React from 'react'
+import BreadCrumbs from '../components/Breadcrumbs';
 
 
 
 const AboutPage:React.FC = ()=>{
     return (
         <div className="about-page">
+            <BreadCrumbs currentPage='About Us' links={[{label:'home',link:'/'}]}/>
             <h1 className="page-title">Our Story</h1>
             
             <section className="begin">

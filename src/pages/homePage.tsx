@@ -57,11 +57,11 @@ const HomePage:React.FC = ()=>{
             <section className="home-cupcake">
                 <Grid container>
                     <Grid item xs={12} md={6} style={{display:'flex',justifyContent:'center'}}>
-                        <img ref={cupcakeRef} src="./images/cupcake.png" width="70%" alt="" />
+                        <img ref={cupcakeRef} src="./images/cake250.png" width="70%" alt="" />
                     </Grid>
                     <Grid item xs={12} md={6}>
-                        <h2>Coconut Cream Pie Cheesecake</h2>
-                        <p>Choose from More than 30 Legendary Flavors of Cheesecake</p>
+                        <h2>Try Our Best Cupcakes</h2>
+                        <p>Choose from More than 50 Legendary Flavors of Cupcakes</p>
                         <div className="home-cupcake-action">
                             <Link to='/cupcakes'><Button>Explore our Cupcakes</Button></Link>
                         </div>

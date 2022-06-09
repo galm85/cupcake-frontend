@@ -61,7 +61,7 @@ const ProductPage:React.FC = ()=>{
                     </div>
                 </Grid>
                 <Grid item xs={12} md={4} className="product-page-right">
-                    <img src={product.image} alt={product.title}  width="100%" />
+                    <img src={product.image} alt={product.title}  width="100%" style={{maxHeight:'300px',objectFit:'contain'}} />
                 </Grid>
             </Grid>
         </div>

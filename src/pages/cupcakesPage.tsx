@@ -5,6 +5,7 @@ import RotateText from '../components/rotateText';
 import { getCupcakes } from '../redux/actions/products.actions';
 import { Product, State } from '../utils/types';
 import CupcakeCard from '../components/cards/cupcakeCard';
+import BreadCrumbs from '../components/Breadcrumbs';
 
 
 const CupcakePage:React.FC = ()=>{
@@ -25,20 +26,34 @@ const CupcakePage:React.FC = ()=>{
         getScreenWidth();
     },[])
 
+    const style:any = {
+        position:'absolute',
+        zIndex:3,
+        top:'10vh',
+        left:'10%',
+        backgroundColor:'rgba(255,255,255,0.5)',
+        
+    } 
 
    
 
 
     return(
-        <div className="cupcake-page">
+        <div className="cupcake-page" style={{paddingBottom:'100px'}}>
+
+            <div className="cupcake-breadcrumps" style={style}>
+                <BreadCrumbs currentPage='Cupcakes' links={[{label:'Home',link:'/'}]}/>
+            </div>
+
             <header className='cupcake-page-header'>
                 <img src="./images/cakesbanner.jpg" alt="cupcake on a table" />
                 <h1 className="page-title">Our CupCakes</h1>
             </header>
 
             <div className="cupcake-page-banners">
-                <RotateText text="Our-new-Cupcakes" space={5} name="cake"  image="cakesbanner.jpg" radius={300} fontSize={2}/>
-                <RotateText text="tery cthis s" space={5} name='berry'  image="strewberry.png" radius={300} fontSize={2}/>
+                <RotateText text="OVER-250-CAKES-TYPES" space={7} name="cake"  image="cakesbanner.jpg" radius={300} fontSize={1.5}/>
+                <RotateText text="HOME-MADE-CUPCAKES" space={7} name='berry'  image="chef.jpg" radius={400} fontSize={1.5}/>
+                <RotateText text="CAKES-FOR-EVERY-EVENT" space={7} name='event'  image="event.jpg" radius={300} fontSize={1.5}/>
             </div>
 
 
