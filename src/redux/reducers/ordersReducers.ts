@@ -1,4 +1,4 @@
-import { Action, Order, Product } from "../../utils/types"
+import { Action, CurrentOrder, Order, Product } from "../../utils/types"
 
 export type OrderReducerState = {
     currentOrder:[];
@@ -70,6 +70,23 @@ export const ordersReducer = (state=initialState,action:Action)=>{
                 return{
                     ...state,
                     ordersHistory:action.payload
+                }
+
+
+            case 'updateAmountOfCurrentOrder':
+               
+                return{
+                    ...state,
+                    currentOrder:action.payload.items,
+                    totalPriceCurrentOrder:action.payload.total
+                }
+
+            case 'removeItemFromCurrentOrder':
+               
+                return{
+                    ...state,
+                    currentOrder:state.currentOrder.filter((item:CurrentOrder)=>item._id !== action.payload.itemId),
+                    totalPriceCurrentOrder:action.payload.total
                 }
         
         

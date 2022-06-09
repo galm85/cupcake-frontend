@@ -192,3 +192,61 @@ export const getAllOrdersPerUser = (userId:string)=>async(dispatch:any)=>{
 
     
 }
+
+
+
+
+export const updateAmountOfCurrentOrder = (op:string,itemId:string,userId:string)=>async(dispatch:any)=>{
+    try {
+        dispatch({
+            type:'setLoading',
+            payload:true
+        })
+
+        const res  = await axios.patch(`${api}/orders/update-amount-current-order/${userId}/${itemId}/${op}`)
+        
+        dispatch({
+            type:'updateAmountOfCurrentOrder',
+            payload:{items:res.data.items,total:res.data.total}
+        })
+        
+        dispatch({
+            type:'setLoading',
+            payload:false
+        })
+    } catch (error) {
+        dispatch({
+            type:'setLoading',
+            payload:false
+        })
+    }
+}
+
+
+
+
+export const removeItemFromCurrentOrder = (itemId:string,userId:string)=>async(dispatch:any)=>{
+    try {
+        dispatch({
+            type:'setLoading',
+            payload:true
+        })
+
+        const res  = await axios.patch(`${api}/orders/remove-item-from-order/${userId}/${itemId}`)
+        
+        dispatch({
+            type:'removeItemFromCurrentOrder',
+            payload:{itemId,total:res.data.total}
+        })
+        
+        dispatch({
+            type:'setLoading',
+            payload:false
+        })
+    } catch (error) {
+        dispatch({
+            type:'setLoading',
+            payload:false
+        })
+    }
+}

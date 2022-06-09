@@ -1,9 +1,13 @@
 import { Button, Divider, Grid } from '@mui/material';
 import * as React from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector,useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { CurrentOrder, State, User } from '../utils/types';
 import ShoppingBasketIcon from '@mui/icons-material/ShoppingBasket';
+import { removeItemFromCurrentOrder, updateAmountOfCurrentOrder } from '../redux/actions/orders.actions';
+
+
+
 type Props = {
     setOrderOpen:React.Dispatch<React.SetStateAction<boolean>>
     
@@ -12,9 +16,15 @@ type Props = {
 
 const OrderMenu:React.FC<Props> = ({setOrderOpen})=>{
 
+    const dispatch:any = useDispatch();
     const user:User = useSelector((state:State)=>state.usersReducer.currentUser);
     const {currentOrder,totalPriceCurrentOrder} = useSelector((state:State)=>state.ordersReducer);
 
+
+    const handleAmount = (op:string,itemId:string):void=>{
+        dispatch(updateAmountOfCurrentOrder(op,itemId,user._id));
+       
+    }
 
     return(
         <div className="order-menu">
@@ -24,7 +34,6 @@ const OrderMenu:React.FC<Props> = ({setOrderOpen})=>{
                 {currentOrder &&  currentOrder.length > 0 ? 
                     <div className="order-container">
                         {currentOrder.map((order:CurrentOrder)=>(
-                          
                                <div key={order._id}>
                                 <div  className="order-item">
                                     <img src={order.image}  alt={order.title} />
@@ -33,11 +42,14 @@ const OrderMenu:React.FC<Props> = ({setOrderOpen})=>{
                                         <p>${order.price} X {order.amount} = <b> ${(order.amount * order.price).toFixed(2)}</b></p>
                                     </div>
                                     <div className="order-actions">
-                                        <span>+</span>
-                                        <span>-</span>
+                                        <span onClick={()=>handleAmount('+',order._id)}>+</span>
+                                        <span onClick={()=>handleAmount('-',order._id)}>-</span>
                                     </div>
                                 </div>
-                                    <Divider />
+                                <div style={{textAlign:"center"}}>
+                                    <Button color="error" onClick={()=>dispatch(removeItemFromCurrentOrder(order._id,user._id))}>Remove Item</Button>
+                                </div>
+                                <Divider />
                             
                                </div>
                             
