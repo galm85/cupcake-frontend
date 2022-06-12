@@ -6,21 +6,30 @@ import OrderCard from '../components/cards/orderCard';
 import { getAllOrdersPerUser } from '../redux/actions/orders.actions';
 import { CurrentOrder, State, User } from '../utils/types';
 import {Order} from '../utils/types';
+import {useNavigate} from 'react-router-dom';
+
 
 const ProfilePage:React.FC = ()=>{
 
+    const navigate:any = useNavigate();
     const dispatch:any = useDispatch();
     const user:User = useSelector((state:State)=>state.usersReducer.currentUser);
     const {currentOrder,totalPriceCurrentOrder,ordersHistory} = useSelector((state:State)=>state.ordersReducer);
 
     React.useEffect(()=>{
-        dispatch(getAllOrdersPerUser(user._id));
+        if(user){
+            dispatch(getAllOrdersPerUser(user._id));
+        }else{
+            navigate('/login');
+        }
     },[])
 
 
 
     return (
         <div className="profile-page">
+            {user && <>
+        
             <BreadCrumbs currentPage='My Account' links={[{label:'Home',link:'/'}]}/>
             <Grid container className="user-data">
                 <Grid item xs={12} md={4} className="user-image">
@@ -46,6 +55,8 @@ const ProfilePage:React.FC = ()=>{
                     </Grid>
                 </Grid>
             </Grid>
+
+            </>}
         </div>
     )
 }

@@ -2,8 +2,10 @@ import { Grid,TextField,Input,Button,Divider,FormControlLabel,Checkbox } from '@
 import axios from 'axios';
 import React, { FormEvent } from 'react'
 import FormInput from '../components/forms/formInput';
-import { User } from '../utils/types';
-import {Link} from 'react-router-dom';
+import { State, User } from '../utils/types';
+import {Link,useNavigate} from 'react-router-dom';
+import { useSelector } from 'react-redux';
+const api = process.env.REACT_APP_API_URL;
 
 
 type UserErrors = {
@@ -18,10 +20,12 @@ type UserErrors = {
 
 const RegisterPage:React.FC = ()=>{
 
+    const navigate:any = useNavigate();
     const [user,setUser] = React.useState<User | any>({});
     const [thumbnail,setThumbnail] = React.useState<string>('');
     const [errors,setErrors] = React.useState<UserErrors>({});
     const [terms,setTerms] = React.useState<boolean>(false);
+    const currentUser:User = useSelector((state:State)=>state.usersReducer.currentUser);
 
     const handleChange = (e:any):void=>{
         setUser({...user,[e.target.name]:e.target.value});
@@ -86,11 +90,17 @@ const RegisterPage:React.FC = ()=>{
                 data.append('image',user.image);
             }
             
-            const res = await axios.post(`http://localhost:4000/users/register`,data);
+            const res = await axios.post(`${api}/users/register`,data);
+            window.location.href = './';
             
-            alert(res.data.message);
         }
     }
+
+
+    React.useEffect(()=>{
+        if(currentUser)
+        { navigate('/')};
+    },[])
 
     return(
         <div className="register-page">
@@ -164,7 +174,7 @@ const RegisterPage:React.FC = ()=>{
 
                         <Grid container className='form-group' >
                             <Grid item >
-                                <Button variant='outlined' color='error' type="button">Cancel</Button>
+                                <Button variant='outlined' color='error' type="button" onClick={()=>navigate('/')}>Cancel</Button>
                             </Grid>  
                             <Grid item>
                                 <Button type="submit" variant="contained" >Sign In</Button>

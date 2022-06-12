@@ -3,6 +3,9 @@ import FormInput from '../components/forms/formInput';
 import { Button } from '@mui/material';
 import { Link,useSearchParams,useLocation,useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { State, User } from '../utils/types';
+import { useSelector } from 'react-redux';
+const api = process.env.REACT_APP_API_URL;
 
 
 const LoginPage:React.FC = ()=>{
@@ -15,11 +18,16 @@ const LoginPage:React.FC = ()=>{
     const [loading,setLoading] = React.useState<boolean>(false);
     const [response,setResponse] = React.useState<string>('');
     const [from,setFrom] = React.useState<string>('');
-    
+    const currentUser:User = useSelector((state:State)=>state.usersReducer.currentUser);
+
     const [searchParams] = useSearchParams();
     
 
     React.useEffect(()=>{
+        if(currentUser){
+             return navigate('/');
+
+        };
         if(searchParams.get('url')){
             setFrom(String(searchParams.get('url')));
           }
@@ -57,14 +65,12 @@ const LoginPage:React.FC = ()=>{
         
         if(valid){
             try{
-                const res = await axios.post('http://localhost:4000/users/sign-in',user);
+                const res = await axios.post(`${api}/users/sign-in`,user);
                 setResponse('');
                 let token:string = res.data.token;
-                alert('welcome')
                 sessionStorage.setItem('cupcake',token);
                 if(from){
                     navigate(`${from}`,{state:location.state});
-
                 }else{
                     window.location.href = './';
                 }
@@ -93,7 +99,7 @@ const LoginPage:React.FC = ()=>{
                 <FormInput error={errors.password} name="password" label='Password' helperText={errors.password} onChange={handleChange} value={user.password} />
             
                 <div style={{display:'flex',justifyContent:'space-around',marginTop:'50px'}}>
-                    <Button type='button' variant='outlined' color="error">Cancel</Button>
+                    <Button type='button' variant='outlined' color="error" onClick={()=>navigate('/')}>Cancel</Button>
                     <Button type='submit' variant="contained">Login</Button>
                 </div>
 
