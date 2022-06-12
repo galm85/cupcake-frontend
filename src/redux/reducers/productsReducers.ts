@@ -49,6 +49,12 @@ export const productsReducer = (state=initialState,action:Action)=>{
                 products:action.payload
             }
 
+        case 'searchProducts':
+            return{
+                ...state,
+                products:action.payload
+            }
+
 
         default: return state
         

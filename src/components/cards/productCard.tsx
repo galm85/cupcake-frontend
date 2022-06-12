@@ -16,7 +16,7 @@ const ProductCard:React.FC<Props> = ({product,catTitle})=>{
 
 
     return (
-        <div className="product-card" onClick={()=>navigate(`${product.title.toLowerCase()}`,{state:{product,catTitle}})}>
+        <div className="product-card" onClick={()=>navigate(`/menu/${catTitle.toLowerCase()}/${product.title.toLowerCase()}`,{state:{product,catTitle}})}>
             <img src={product.image} alt={product.title} />
             <div className="product-card-data">
                 <h3>{product.title}</h3>

@@ -8,7 +8,7 @@ import { getCurrentOrder } from './redux/actions/orders.actions';
 
 // components
 import {Navbar,Sidenav,Footer,Loading, OrderMenu} from './components';
-import { CupcakePage, HomePage, LoginPage, RegisterPage,MenuPage,CategoryPage,ProductPage, ProfilePage, CheckoutPage,RestaurantsPage,AboutPage, CareersPage,ApplyPage } from './pages';
+import { CupcakePage, HomePage, LoginPage, RegisterPage,MenuPage,CategoryPage,ProductPage, ProfilePage, CheckoutPage,RestaurantsPage,AboutPage, CareersPage,ApplyPage, SearchResultsPage } from './pages';
 import { Dashboard } from './admin';
 
 function App() {
@@ -59,6 +59,7 @@ function App() {
           <Route path='/about-us' element={<AboutPage/>} />
           <Route path='/careers' element={<CareersPage/>} />
           <Route path='/careers/apply/:job_id' element={<ApplyPage/>} />
+          <Route path='/search/:value' element={<SearchResultsPage/>} />
           
           
           <Route path='/admin/*' element={<Dashboard />} />

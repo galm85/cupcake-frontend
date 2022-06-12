@@ -17,6 +17,7 @@
     "@types/styled-components": "^5.1.25",
     "axios": "^0.27.2",
     "jwt-decode": "^3.1.2",
+    "lodash": "^4.17.21",
     "react": "^18.1.0",
     "react-doc-viewer": "^0.1.5",
     "react-dom": "^18.1.0",
@@ -54,6 +55,7 @@
     ]
   },
   "devDependencies": {
+    "@types/lodash": "^4.14.182",
     "redux-devtools-extension": "^2.13.9"
   }
 }

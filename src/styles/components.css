@@ -20,6 +20,8 @@
 
 .nav-logo{
     flex:1;
+    display: flex;
+    align-items: center;
 }
 
 .nav-links{
@@ -51,6 +53,68 @@
     transform: translateY(2px);
     
 }
+
+
+
+
+
+/* ============ Search bar =========== */
+.search-bar{
+    margin:0 100px;
+    
+}
+
+.search-bar .search-field{
+    display: flex;
+    align-items: center;
+}
+.search-input{
+    height: 40px;
+    width: 300px;
+    outline: none;
+    border: none;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    padding: 5px 15px;
+    font-family: var(--main-font);
+    font-weight: var(--light);
+    background-color: var(--purpel);
+    opacity:80%;
+    color: white;
+}
+.search-btn{
+    height: 40px;
+    width: 40px;
+    border:none;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    background-color: var(--purpel);
+    color: aliceblue;
+}
+
+.search-bar .options-box{
+    position: absolute;
+    z-index: 200;
+    background-color:var(--purpel);
+    color:white;
+    width: 300px;
+}
+
+.search-bar .options-box p{
+    padding:  5px 10px;
+    font-family: var(--main-font);
+    font-weight: var(--light);
+    cursor: pointer;
+    transition-duration: 0.3s;
+}
+.search-bar .options-box p:hover{
+   
+    font-family: var(--main-font);
+    background-color: white;
+    color: var(--purpel);
+}
+
+
 
 
 

@@ -11,3 +11,4 @@ export {default as RestaurantsPage} from './restaurants';
 export {default as AboutPage} from './aboutPage';
 export {default as CareersPage} from './careersPage';
 export {default as ApplyPage} from './applyPage';
+export {default as SearchResultsPage} from './searchResultsPage';

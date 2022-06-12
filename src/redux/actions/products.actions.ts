@@ -170,3 +170,32 @@ export const getSingleProduct = (id:string)=>async(dispatch:any)=>{
 
 
 }
+
+
+
+export const searchProducts = (value:string)=>async(dispatch:any)=>{
+
+    try {
+        dispatch({
+            type:'setLoading',
+            payload:true
+        })
+        
+        const res = await axios.get(`${api}/products/search/${value}`);
+        console.log(res.data);
+        dispatch({
+            type:'searchProducts',
+            payload:res.data,
+        })
+ 
+        dispatch({
+         type:'setLoading',
+         payload:false
+     })
+        
+    } catch (error) {
+        console.error(error);
+    } 
+    
+ 
+ }

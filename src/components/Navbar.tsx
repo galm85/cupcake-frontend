@@ -3,6 +3,7 @@ import {NavLink} from 'react-router-dom';
 import MenuIcon from '@mui/icons-material/Menu';
 import {useSelector} from 'react-redux';
 import ShoppingBasketIcon from '@mui/icons-material/ShoppingBasket';
+import SearchBar from './searchBar';
 
 type Props={
     setMenuOpen:React.Dispatch<React.SetStateAction<boolean>>
@@ -23,6 +24,7 @@ const Navbar:React.FC<Props> = ({setMenuOpen,setOrderOpen}) => {
                 <NavLink to='/'>
                     <img src="./images/cupcake-logo.png" alt="logo" width="100px" />
                 </NavLink>
+            <SearchBar />
             </div>
             {currentUser ?
             <>
