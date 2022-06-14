@@ -35,17 +35,18 @@
     align-items: center;
     width: 100px;
     height: 50px;
-    background-color: var(--cyan);
-    color: var(--text);
+    background-color: var(--purpel);
+    color: var(--orange);
     font-size: 20px;
     border-radius: 20px;
+    font-family: var(--main-font);
     transition: all ease 0.2s;
 }
 
 .login-btn:hover{
-    border: 1px solid var(--cyan);
+    border: 1px solid var(--purpel);
     background: none;
-    color: var(--cyan);
+    color: var(--purpel);
     
 }
 

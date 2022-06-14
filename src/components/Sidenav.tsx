@@ -3,6 +3,7 @@ import React from 'react'
 import { NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { MainState } from '../redux/store';
+import Logo from '../assets/cupcake-logo.png';
 
 // icons
 import HomeIcon from '@mui/icons-material/Home';
@@ -29,7 +30,7 @@ const Sidenav:React.FC<Props> = ({setMenuOpen})=>{
     return(
         <div className="sidenav">
             <div className="sidenav-header">
-                <img src="./images/cupcake-logo.png" width='100px' alt="logo" />
+                <img src={Logo} width='100px' alt="logo" />
                 <h2>The CupCake Factory</h2>
             </div>
           

@@ -4,6 +4,9 @@ import MenuIcon from '@mui/icons-material/Menu';
 import {useSelector} from 'react-redux';
 import ShoppingBasketIcon from '@mui/icons-material/ShoppingBasket';
 import SearchBar from './searchBar';
+import { State } from '../utils/types';
+import Loading from './Loading';
+import Logo from '../assets/cupcake-logo.png';
 
 type Props={
     setMenuOpen:React.Dispatch<React.SetStateAction<boolean>>
@@ -12,7 +15,9 @@ type Props={
 
 const Navbar:React.FC<Props> = ({setMenuOpen,setOrderOpen}) => {
 
-    const {currentUser} = useSelector((state:any) =>state.usersReducer);
+    const {currentUser} = useSelector((state:State) =>state.usersReducer);
+    const {loading} = useSelector((state:State)=>state.settingReducer);
+
 
 
     return ( 
@@ -22,7 +27,7 @@ const Navbar:React.FC<Props> = ({setMenuOpen,setOrderOpen}) => {
             </div>
             <div className="nav-logo">
                 <NavLink to='/'>
-                    <img src="./images/cupcake-logo.png" alt="logo" width="100px" />
+                    <img src={Logo} alt="logo" width="95px" />
                 </NavLink>
             <SearchBar />
             </div>
@@ -41,6 +46,7 @@ const Navbar:React.FC<Props> = ({setMenuOpen,setOrderOpen}) => {
                     <NavLink className="login-btn" to='/login'>Login</NavLink>
                 </div>
             }
+           
         </div>
      );
 }

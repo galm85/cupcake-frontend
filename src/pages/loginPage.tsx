@@ -96,7 +96,7 @@ const LoginPage:React.FC = ()=>{
                 {response && <h3 style={{textAlign:'center',color:'red'}}>{response}</h3>}
                 
                 <FormInput error={errors.email} name="email" label='Email' helperText={errors.email} onChange={handleChange} value={user.email} />
-                <FormInput error={errors.password} name="password" label='Password' helperText={errors.password} onChange={handleChange} value={user.password} />
+                <FormInput error={errors.password} name="password" label='Password' type='password' helperText={errors.password} onChange={handleChange} value={user.password} />
             
                 <div style={{display:'flex',justifyContent:'space-around',marginTop:'50px'}}>
                     <Button type='button' variant='outlined' color="error" onClick={()=>navigate('/')}>Cancel</Button>
