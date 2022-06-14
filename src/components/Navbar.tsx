@@ -22,7 +22,7 @@ const Navbar:React.FC<Props> = ({setMenuOpen,setOrderOpen}) => {
 
     return ( 
         <div className="navbar">
-            <div className="menu-item">
+            <div className="menu-item" style={{cursor:'pointer'}}>
                 <MenuIcon fontSize='large' onClick={()=>setMenuOpen(true)}/>
             </div>
             <div className="nav-logo">
@@ -33,7 +33,7 @@ const Navbar:React.FC<Props> = ({setMenuOpen,setOrderOpen}) => {
             </div>
             {currentUser ?
             <>
-                <div className="menu-item">
+                <div className="menu-item" style={{cursor:'pointer'}}>
                     <ShoppingBasketIcon fontSize='large'   style={{marginRight:'20px'}} onClick={()=>setOrderOpen(true)}/>
                 </div>
                 <div className="nav-links">
