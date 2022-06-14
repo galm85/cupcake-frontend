@@ -2,7 +2,7 @@ import axios from 'axios';
 const api = process.env.REACT_APP_API_URL;
 
 
-export const getProducts = (page:number,itemsPerPage:number)=>async(dispatch:any)=>{
+export const getProducts = (page:number,itemsPerPage:number,categoryId:string)=>async(dispatch:any)=>{
 
    try {
        dispatch({
@@ -13,7 +13,7 @@ export const getProducts = (page:number,itemsPerPage:number)=>async(dispatch:any
        let res:any;
 
        if(page){
-           res = await axios.get(`${api}/products?page=${String(page)}&itemsPerPage=${String(itemsPerPage)}`);
+           res = await axios.get(`${api}/products?page=${String(page)}&itemsPerPage=${String(itemsPerPage)}&categoryId=${categoryId}`);
        }else{
            res = await axios.get(`${api}/products`);  
        }
@@ -29,6 +29,10 @@ export const getProducts = (page:number,itemsPerPage:number)=>async(dispatch:any
     })
        
    } catch (error) {
+        dispatch({
+            type:'setLoading',
+            payload:false
+        })
        console.error(error);
    } 
    

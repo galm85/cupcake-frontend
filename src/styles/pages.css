@@ -291,6 +291,7 @@
     width: 100%;
     background-color: #faebd7;
     min-height: 80vh;
+    padding-bottom: 200px;
 }
 
 .category-page-grid-container{
@@ -359,6 +360,7 @@
     margin: auto;
     min-height: 90vh;
     background-color:var(--background);
+    padding-bottom: 200px;
 }
 
 .menu-page .manu-page-grid-container{

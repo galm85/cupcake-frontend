@@ -2,13 +2,14 @@ import { TableCell, TableRow,Table, TableHead, TableBody } from '@mui/material';
 import React from 'react'
 import { useDispatch,useSelector } from 'react-redux';
 import { NavLink,useSearchParams,useLocation,useNavigate } from 'react-router-dom';
-import { deleteProduct, getProducts } from '../../../redux/actions/products.actions';
-import {State,Product} from '../../../utils/types';
+import { deleteProduct, getProducts, getProductsByCategory } from '../../../redux/actions/products.actions';
+import {State,Product, Category} from '../../../utils/types';
 import {capitilize} from '../../../utils/functions';
 import CheckIcon from '@mui/icons-material/Check';
 import ClearIcon from '@mui/icons-material/Clear';
 import NavigationBar from '../../components/navigationBar';
 import FormSelect from '../../../components/forms/formSelect';
+import { getAllCategories } from '../../../redux/actions/categories.actions';
 
 const options = [
     {_id:5,title:'5'},
@@ -19,23 +20,33 @@ const options = [
 const ProductsAdmin:React.FC = ()=>{
 
     let page:number = 1;
-    const [itemsPerPage,setItemsPerPage] = React.useState<number>(10);
-
     const [searchParams] = useSearchParams();
     if(searchParams.get('page')){
         page = Number(searchParams.get('page'));
     }
 
 
+    const [itemsPerPage,setItemsPerPage] = React.useState<number>(10);
+    const [currentCategory,setCurrentCatgory] = React.useState<string>('all');
+
     const location:any = useLocation();
     const navigate:any = useNavigate();
     const dispatch:any = useDispatch();
     const {products,totalProducts} = useSelector((state:State)=>state.productsReducer);
+    const categories:Category[] = useSelector((state:State)=>state.categoriesReducer.categories);
 
     React.useEffect(()=>{
-        dispatch(getProducts(page,itemsPerPage));
+        dispatch(getProducts(page,itemsPerPage,currentCategory));
+        dispatch(getAllCategories());
     },[page,itemsPerPage]);
     
+
+    const handleCategory = (e:any)=>{
+        setCurrentCatgory(e.target.value);
+        dispatch(getProducts(page,itemsPerPage,e.target.value));
+        
+
+    }
 
     return (
        
@@ -46,6 +57,13 @@ const ProductsAdmin:React.FC = ()=>{
            <div style={{display:'flex',justifyContent:'space-between',alignItems:'center'}}>
                <NavLink className="add-new-btn" to="/admin/products/new-product">New</NavLink>
                <FormSelect label='Items Per Page' onChange={(e:any)=>setItemsPerPage(e.target.value)} name="itemsperpage" options={options} value={itemsPerPage} />
+               <FormSelect 
+                    label='Categoty' 
+                    onChange={handleCategory} 
+                    name="itemsPerCategory" 
+                    options={[{_id:'all',title:'all'},...categories]} 
+                    value={currentCategory} />
+               
            </div>
 
            <div className="products-table">
