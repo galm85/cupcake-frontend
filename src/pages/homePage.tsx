@@ -2,8 +2,14 @@ import { Grid,Button } from '@mui/material'
 import React from 'react'
 import { Link } from 'react-router-dom';
 
-
-
+// images
+import Strewberry from '../assets/strewberry.png';
+import HomeBanner from '../assets/homePageBanner.png';
+import ChoclateCake from '../assets/choclate_cake.png'
+import Logo from '../assets/cupcake-logo.png';
+import Cake250 from '../assets/cake250.png';
+import OurMenuBanner from '../assets/ourMenuBanner2.png';
+import HomeRestaurant from '../assets/homeRestaurant.jpg';
 
 const HomePage:React.FC = ()=>{
 
@@ -54,14 +60,14 @@ const HomePage:React.FC = ()=>{
             
             {/* header */}
             <section className="header">
-                <img className='stewberry-image stewberry-2' src="./images/strewberry.png"  alt="" />
-                <img className='stewberry-image stewberry-1' src="./images/strewberry.png"  alt="" />
-                <img className='background-image' src="./images/homePageBanner.png" alt="cupcake banner" />
-                <img ref={cakeRef} className='cupcake-image' src="./images/choclate_cake.png" alt="" />    
+                <img className='stewberry-image stewberry-2' src={Strewberry}  alt="Strewberry" />
+                <img className='stewberry-image stewberry-1' src={Strewberry}  alt="Strewberry" />
+                <img className='background-image' src={HomeBanner} alt="cupcake banner" />
+                <img ref={cakeRef} className='cupcake-image' src={ChoclateCake} alt="Choclate Cake" />    
               
                 <div className="header-title" ref={headerRef}>
                 <h1 >The CupCake Factory </h1>
-                <img className='logo-image' ref={logoRef} width='40%' src="./images/cupcake-logo.png" alt="" />
+                <img className='logo-image' ref={logoRef} width='40%' src={Logo} alt="logo" />
                 </div>
                 <h2 ref={textRef} >Eat what you like</h2>
             </section>
@@ -73,7 +79,7 @@ const HomePage:React.FC = ()=>{
             <section className="home-cupcake">
                 <Grid container>
                     <Grid item xs={12} md={6} style={{display:'flex',justifyContent:'center'}}>
-                        <img ref={cupcakeRef} src="./images/cake250.png" width="70%" alt="" />
+                        <img ref={cupcakeRef} src={Cake250} width="70%" alt="cake" />
                     </Grid>
                     <Grid item xs={12} md={6}>
                         <h2>Try Our Best Cupcakes</h2>
@@ -99,7 +105,7 @@ const HomePage:React.FC = ()=>{
                             <Link to='/menu'><Button>Explore Menu</Button></Link>
                         </Grid>
                         <Grid item xs={12} md={7}>
-                            <img ref={menuImage} className='menu-image' src="./images/ourMenuBanner2.png" alt="" />
+                            <img ref={menuImage} className='menu-image' src={OurMenuBanner} alt="menu banner" />
                         </Grid>
                     </Grid>
             </section>
@@ -109,7 +115,7 @@ const HomePage:React.FC = ()=>{
 
             {/* restaurant section */}
             <section className="home-restaurant">
-                <img src="./images/homeRestaurant.jpg"  alt="" />
+                <img src={HomeRestaurant}  alt="restaurant banner" />
                 <div className="home-restaurant-box">
                     <h2>Find A Place To Eat</h2>
                     <Link to='/restaurants'><Button variant="contained" style={{background:'green',margin:'20px 0',minWidth:'200px'}}>Find</Button></Link>

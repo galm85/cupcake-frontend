@@ -1,6 +1,7 @@
 {
   "name": "client",
   "version": "0.1.0",
+  "homepage": "https://galwebdev.com/my-projects/cupcake-factory/",
   "private": true,
   "dependencies": {
     "@emotion/react": "^11.9.0",

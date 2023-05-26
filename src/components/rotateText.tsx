@@ -60,7 +60,7 @@ const RotateText:React.FC<Props> = ({text,space,image,radius,fontSize,name})=>{
     return(
         <div style={circleStyle} >
                     <div className="rotate-text-image" style={imageStyle}>
-                        <img src={`./images/${image}`} alt="" />
+                        <img src={image} alt="" />
                     </div>
                     <div className={`rotate-text-text-${name} rotate-text-text`}>
                         <p>{text}</p>

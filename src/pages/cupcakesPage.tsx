@@ -8,6 +8,10 @@ import CupcakeCard from '../components/cards/cupcakeCard';
 import BreadCrumbs from '../components/Breadcrumbs';
 
 
+import CakesBanner from '../assets/cakesbanner.jpg';
+import Chef from '../assets/chef.jpg';
+import EventImg from '../assets/event.jpg'
+
 const CupcakePage:React.FC = ()=>{
 
 
@@ -46,14 +50,14 @@ const CupcakePage:React.FC = ()=>{
             </div>
 
             <header className='cupcake-page-header'>
-                <img src="./images/cakesbanner.jpg" alt="cupcake on a table" />
+                <img src={CakesBanner} alt="cupcake on a table" />
                 <h1 className="page-title">Our CupCakes</h1>
             </header>
 
             <div className="cupcake-page-banners">
-                <RotateText text="OVER-250-CAKES-TYPES" space={7} name="cake"  image="cakesbanner.jpg" radius={300} fontSize={1.5}/>
-                <RotateText text="HOME-MADE-CUPCAKES" space={7} name='berry'  image="chef.jpg" radius={400} fontSize={1.5}/>
-                <RotateText text="CAKES-FOR-EVERY-EVENT" space={7} name='event'  image="event.jpg" radius={300} fontSize={1.5}/>
+                <RotateText text="OVER-250-CAKES-TYPES" space={7} name="cake"  image={CakesBanner} radius={300} fontSize={1.5}/>
+                <RotateText text="HOME-MADE-CUPCAKES" space={7} name='berry'  image={Chef} radius={400} fontSize={1.5}/>
+                <RotateText text="CAKES-FOR-EVERY-EVENT" space={7} name='event'  image={EventImg} radius={300} fontSize={1.5}/>
             </div>
 
 
