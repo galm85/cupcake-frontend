@@ -1,70 +1,131 @@
+/* ============================================================
+   FORMS — The CupCake Factory
+   ============================================================ */
 
-/* General */
 
-.form-header{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 50px;
+/* ── General form header / title ── */
+.form-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 36px;
 }
 
-.form-title{
-    font-family: var(--spacial-font);
-    color: var(--purpel);
-    text-align: center;
-    font-size: 40px;
+.form-title {
+  font-family: var(--heading-font);
+  color: var(--text-primary);
+  text-align: center;
+  font-size: 32px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
 }
 
-
-
-
-
-
-
-
-
-/* register page */
-.register-container{
-   display: flex;
-   justify-content: center;
-   margin-top: 10vh;
-}
-
-.form-group{
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-}
-
-.register-form{
-    border:1px solid var(--purpel);
-    padding: 20px;
-    border-radius: 20px;
-    transition: all ease 0.2s;
+.form-title::after {
+  content: '';
+  display: block;
+  width: 32px;
+  height: 3px;
+  background: var(--rose);
+  margin: 8px auto 0;
+  border-radius: var(--radius-full);
 }
 
 
-/* login page */
-.login-page{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+/* ── Register page ── */
+.register-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 6vh;
+  padding: 0 24px 80px;
+  background: var(--background);
+  min-height: 80vh;
 }
 
-.login-form{
-    width: 700px;
-    margin: 80px auto;
-    border:3px solid var(--purpel);
-    padding: 40px 30px;
-    border-radius: 40px;
-    box-shadow: 0px 0px 5px var(--purpel);
+.form-group {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  width: 100%;
 }
 
+.register-form {
+  width: 100%;
+  max-width: 600px;
+  background: white;
+  border: 1px solid var(--border-light);
+  padding: 44px 40px;
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-md);
+}
 
 @media only screen and (max-width: 800px) {
-   .login-form{
-       width: 90%;
-       border:1px solid var(--purpel);
-       
-   }
+  .register-form {
+    padding: 32px 24px;
+    border-radius: var(--radius-lg);
   }
+
+  .form-group {
+    flex-direction: column;
+  }
+}
+
+
+/* ── Login page ── */
+.login-page {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: var(--background);
+  min-height: 80vh;
+  padding: 40px 24px 80px;
+}
+
+.login-form {
+  width: 520px;
+  background: white;
+  border: 1px solid var(--border-light);
+  padding: 52px 44px;
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-lg);
+}
+
+@media only screen and (max-width: 800px) {
+  .login-form {
+    width: 100%;
+    padding: 36px 24px;
+    border-radius: var(--radius-lg);
+  }
+}
+
+
+/* ── MUI TextField override inside forms ── */
+.login-form .MuiTextField-root,
+.register-form .MuiTextField-root {
+  margin-bottom: 12px !important;
+}
+
+.MuiOutlinedInput-root {
+  border-radius: var(--radius-md) !important;
+  font-family: var(--main-font) !important;
+}
+
+.MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline {
+  border-color: var(--rose-light) !important;
+}
+
+.MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline {
+  border-color: var(--rose) !important;
+}
+
+.MuiInputLabel-root.Mui-focused {
+  color: var(--rose) !important;
+}
+
+.MuiInputBase-input {
+  font-family: var(--main-font) !important;
+  font-size: 15px !important;
+  color: var(--text-primary) !important;
+}

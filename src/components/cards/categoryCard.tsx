@@ -1,27 +1,32 @@
 import React from 'react'
 import { capitilize } from '../../utils/functions';
 import { Category } from '../../utils/types';
-import {useNavigate} from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 type Props = {
-    category:Category;
-    fn:any;
+    category: Category;
+    fn: any;
 }
 
+const CategoryCard: React.FC<Props> = ({ category, fn }) => {
 
-const CategoryCard:React.FC<Props> = ({category,fn})=>{
+    const navigate: any = useNavigate();
 
-    const navigate:any = useNavigate();
-
-    return(
-        <div className="category-card" onMouseEnter={()=>fn(category.image)} onClick={()=>navigate(`/menu/${category.title.toLowerCase()}`,{state:{categoryId:category._id,catTitle:category.title}})}>
+    return (
+        <div
+            className="category-card"
+            onMouseEnter={() => fn(category.image)}
+            onClick={() => navigate(`/menu/${category.title.toLowerCase()}`, { state: { categoryId: category._id, catTitle: category.title } })}
+        >
             <div className="category-card-image">
-                <img src={category.image}  alt={category.title} />
+                <img src={category.image} alt={category.title} />
             </div>
-            <h3 className='category-card-title'>{capitilize(category.title)}</h3>
+            <div className="category-card-overlay">
+                <h3>{capitilize(category.title)}</h3>
+                <span>Explore →</span>
+            </div>
         </div>
     )
 }
-
 
 export default CategoryCard;

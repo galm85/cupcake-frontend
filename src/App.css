@@ -1,79 +1,161 @@
-@import url('https://fonts.googleapis.com/css2?family=Lobster&family=Poppins:wght@300;400;700;900&display=swap');
-*{
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600;700&display=swap');
+
+* {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
 }
 
-:root{
-  /* colors */
-  --purpel:#620080;
-  --pink:#fa9aca;
-  --orange:#f99d6c;
-  /* --orange:#ff5500; */
-  --cyan:#22f2f4;
-  --text:#011c50;
-  --background:#f5eee5;
+:root {
+  /* Brand — warm rose / patisserie palette */
+  --rose:          #C17C74;
+  --rose-dark:     #9E5E57;
+  --rose-light:    #EDD5D2;
+  --rose-pale:     #FBF0EF;
 
-  /* fonst */
-  --main-font:'Poppins', sans-serif;
-  --spacial-font:'Lobster', cursive;
+  --gold:          #C9A96E;
+  --gold-light:    #F0E4CE;
 
-  /* font weihgt */
-  --light:300;
-  --normal:400;
-  --bold:700;
-  --black:700;
+  /* Neutrals */
+  --cream:         #FDF8F3;
+  --cream-dark:    #F5EDE2;
+  --border:        #E8DDD8;
+  --border-light:  #F0E8E4;
+
+  /* Text */
+  --text-primary:  #2D2020;
+  --text-secondary:#6B5E5E;
+  --text-muted:    #9B8E8E;
+  --text-white:    #FFFFFF;
+
+  /* Semantic aliases kept for backward-compat with components that reference old vars */
+  --purpel:        #C17C74;
+  --pink:          #EDD5D2;
+  --orange:        #C17C74;
+  --cyan:          #C9A96E;
+  --text:          #2D2020;
+  --background:    #FDF8F3;
+
+  /* Typography */
+  --main-font:    'Inter', sans-serif;
+  --heading-font: 'Playfair Display', serif;
+  --spacial-font: 'Playfair Display', serif;
+
+  /* Font weights */
+  --light:   300;
+  --normal:  400;
+  --medium:  500;
+  --semibold:600;
+  --bold:    700;
+  --black:   700;
+
+  /* Border radius */
+  --radius-sm:   6px;
+  --radius-md:   12px;
+  --radius-lg:   20px;
+  --radius-xl:   32px;
+  --radius-full: 9999px;
+
+  /* Shadows */
+  --shadow-sm:   0 1px 4px rgba(45,32,32,0.06);
+  --shadow-md:   0 4px 16px rgba(45,32,32,0.08);
+  --shadow-lg:   0 8px 32px rgba(45,32,32,0.10);
+  --shadow-hover:0 16px 40px rgba(45,32,32,0.13);
+
+  /* Transitions */
+  --transition:     all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-img: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-
-/* css files */
+/* ── CSS file imports ── */
 @import './styles/forms.css';
 @import './styles/admin.css';
 @import './styles/components.css';
-@import './styles//pages.css';
+@import './styles/pages.css';
 
-
-
-header{
-  height: 10vh;
+/* ── Layout shells ── */
+header {
+  height: 71px;
   width: 100%;
   position: static;
 }
 
-main{
+main {
   min-height: 80vh;
   width: 100%;
-  background:var(--background);
+  background: var(--background);
 }
 
-
-footer{
- min-height: 10vh;
- width: 100%;
+footer {
+  width: 100%;
 }
 
-
-
-.app{
+.app {
   width: 100%;
   height: 100%;
 }
 
-
-a{
+a {
   text-decoration: none;
 }
 
-
-
-/* general classes */
-.page-title{
-  font-family: var(--spacial-font);
-  color: var(--purpel);
+/* ── Global utilities ── */
+.page-title {
+  font-family: var(--heading-font);
+  color: var(--text-primary);
   text-align: center;
-  font-weight: var(--bold);
-  font-size: 3rem;
-  margin-bottom:50px;
+  font-weight: 600;
+  font-size: 2.5rem;
+  margin-bottom: 48px;
+  letter-spacing: -0.02em;
 }
 
+.page-title::after {
+  content: '';
+  display: block;
+  width: 40px;
+  height: 3px;
+  background: var(--rose);
+  margin: 10px auto 0;
+  border-radius: var(--radius-full);
+}
+
+/* ── MUI Button global overrides ── */
+.MuiButton-root {
+  font-family: var(--main-font) !important;
+  font-weight: 500 !important;
+  letter-spacing: 0.01em !important;
+  border-radius: var(--radius-full) !important;
+  text-transform: none !important;
+  transition: var(--transition) !important;
+}
+
+.MuiButton-contained {
+  background: var(--rose) !important;
+  color: white !important;
+  box-shadow: 0 2px 8px rgba(193,124,116,0.30) !important;
+}
+
+.MuiButton-contained:hover {
+  background: var(--rose-dark) !important;
+  box-shadow: 0 4px 14px rgba(193,124,116,0.40) !important;
+  transform: translateY(-1px);
+}
+
+.MuiButton-outlined {
+  border-color: var(--rose) !important;
+  color: var(--rose) !important;
+}
+
+.MuiButton-outlined:hover {
+  background: var(--rose-pale) !important;
+  border-color: var(--rose-dark) !important;
+}
+
+.MuiButton-text {
+  color: var(--rose) !important;
+}
+
+.MuiButton-text:hover {
+  background: var(--rose-pale) !important;
+}

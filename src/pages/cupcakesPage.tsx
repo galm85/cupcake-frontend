@@ -1,97 +1,150 @@
-import { Grid } from '@mui/material';
-import React from 'react'
-import { useDispatch,useSelector } from 'react-redux';
+import { Button, Grid } from '@mui/material';
+import React from 'react';
+import { Link } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 import RotateText from '../components/rotateText';
 import { getCupcakes } from '../redux/actions/products.actions';
 import { Product, State } from '../utils/types';
 import CupcakeCard from '../components/cards/cupcakeCard';
 import BreadCrumbs from '../components/Breadcrumbs';
 
+import CakesBanner  from '../assets/cakesbanner.jpg';
+import Chef         from '../assets/chef.jpg';
+import EventImg     from '../assets/event.jpg';
+import CupcakeMain  from '../assets/cupcakeMain.jpg';
 
-import CakesBanner from '../assets/cakesbanner.jpg';
-import Chef from '../assets/chef.jpg';
-import EventImg from '../assets/event.jpg'
+const CupcakePage: React.FC = () => {
 
-const CupcakePage:React.FC = ()=>{
+    const dispatch: any = useDispatch();
+    const cupcakes: Product[] = useSelector((state: State) => state.productsReducer.products);
+    const [hoverImage, setHoverImage] = React.useState<string>('');
+    const [isDesktop, setIsDesktop] = React.useState(false);
 
-
-    const dispatch:any = useDispatch();
-    const cupcakes:Product[] = useSelector((state:State)=> state.productsReducer.products);
-    const [image,setImage] = React.useState<string | null>(null);
-    const [screen,setScreen] = React.useState<number>(0);
-    
-    const getScreenWidth = ()=>{
-        const w:any = window.innerWidth;
-        setScreen(w);
-    }
-
-    React.useEffect(()=>{
+    React.useEffect(() => {
         dispatch(getCupcakes());
-        getScreenWidth();
-    },[])
+        setIsDesktop(window.innerWidth > 960);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
 
-    const style:any = {
-        position:'absolute',
-        zIndex:3,
-        top:'10vh',
-        left:'10%',
-        backgroundColor:'rgba(255,255,255,0.5)',
-        
-    } 
+    return (
+        <div className="cupcake-page">
 
-   
-
-
-    return(
-        <div className="cupcake-page" style={{paddingBottom:'100px'}}>
-
-            <div className="cupcake-breadcrumps" style={style}>
-                <BreadCrumbs currentPage='Cupcakes' links={[{label:'Home',link:'/'}]}/>
+            {/* ════════════════════════════════
+                HERO
+            ════════════════════════════════ */}
+            <div className="cp-hero">
+                <img src={CakesBanner} alt="Our cupcakes" />
+                <div className="cp-hero-overlay" />
+                <div className="cp-hero-content">
+                    <BreadCrumbs
+                        currentPage="Our Cupcakes"
+                        links={[{ label: 'Home', link: '/' }]}
+                    />
+                    <h1>Our Cupcakes</h1>
+                    <p>50+ legendary flavors, handcrafted every morning from scratch.</p>
+                    <Link to='/menu'>
+                        <Button variant="contained" className="hp-btn-primary">
+                            Browse Full Menu
+                        </Button>
+                    </Link>
+                </div>
             </div>
 
-            <header className='cupcake-page-header'>
-                <img src={CakesBanner} alt="cupcake on a table" />
-                <h1 className="page-title">Our CupCakes</h1>
-            </header>
-
-            <div className="cupcake-page-banners">
-                <RotateText text="OVER-250-CAKES-TYPES" space={7} name="cake"  image={CakesBanner} radius={300} fontSize={1.5}/>
-                <RotateText text="HOME-MADE-CUPCAKES" space={7} name='berry'  image={Chef} radius={400} fontSize={1.5}/>
-                <RotateText text="CAKES-FOR-EVERY-EVENT" space={7} name='event'  image={EventImg} radius={300} fontSize={1.5}/>
+            {/* ════════════════════════════════
+                STATS STRIP
+            ════════════════════════════════ */}
+            <div className="cp-stats">
+                <div className="cp-stat"><strong>50+</strong><span>Unique Flavors</span></div>
+                <div className="cp-stat-div" />
+                <div className="cp-stat"><strong>100%</strong><span>Made From Scratch</span></div>
+                <div className="cp-stat-div" />
+                <div className="cp-stat"><strong>Daily</strong><span>Freshly Baked</span></div>
+                <div className="cp-stat-div" />
+                <div className="cp-stat"><strong>Vegan</strong><span>Options Available</span></div>
             </div>
 
+            {/* ════════════════════════════════
+                ROTATING SHOWCASE
+            ════════════════════════════════ */}
+            <section className="cp-showcase">
+                <div className="cp-showcase-inner">
+                    <RotateText
+                        text="OVER-250-CAKES-TYPES-"
+                        space={7} name="cake"
+                        image={CakesBanner}
+                        radius={240} fontSize={1.2}
+                    />
+                    <RotateText
+                        text="HOME-MADE-CUPCAKES-"
+                        space={7} name="berry"
+                        image={Chef}
+                        radius={280} fontSize={1.2}
+                    />
+                    <RotateText
+                        text="CAKES-FOR-EVERY-EVENT-"
+                        space={7} name="event"
+                        image={EventImg}
+                        radius={240} fontSize={1.2}
+                    />
+                </div>
+            </section>
 
+            {/* ════════════════════════════════
+                PRODUCT GRID
+            ════════════════════════════════ */}
+            <section className="cp-products">
 
-            <hr />
+                <div className="cp-products-header">
+                    <div>
+                        <span className="hp-label">Our Selection</span>
+                        <h2>All Cupcakes</h2>
+                    </div>
+                    <p className="cp-count">
+                        {cupcakes?.length ?? 0} flavors available today
+                    </p>
+                </div>
 
+                <Grid container spacing={4}>
 
-            <section className="cupcake-page-products">
-                <Grid container style={{display:'flex',justifyContent:'space-between'}}>
-
-                    <Grid item xs={12} md={6}>
-                        <Grid container spacing={5} style={{display:'flex',justifyContent:'space-between'}}>
-                        {cupcakes && cupcakes.map((cupcake:Product)=>(
-                            <Grid item xs={12}  key={cupcake._id} onMouseEnter={()=>setImage(cupcake.image)} onMouseLeave={()=>setImage('')} >
-                                <CupcakeCard cupcake={cupcake}  />
-                            </Grid> 
-                        ))} 
+                    {/* Cupcake cards — 2-col grid */}
+                    <Grid item xs={12} md={7}>
+                        <Grid container spacing={3}>
+                            {cupcakes && cupcakes.map((cupcake: Product) => (
+                                <Grid
+                                    item xs={12} sm={6}
+                                    key={cupcake._id}
+                                    onMouseEnter={() => setHoverImage(cupcake.image)}
+                                    onMouseLeave={() => setHoverImage('')}
+                                >
+                                    <CupcakeCard cupcake={cupcake} />
+                                </Grid>
+                            ))}
                         </Grid>
                     </Grid>
-                    {screen && screen>1000 && image &&  
-                        <Grid item xs={5}>
-                            <div className="capcake-page-products-image">
-                                <img src={image} alt="cake image" />
+
+                    {/* Sticky preview panel — desktop only */}
+                    {isDesktop && (
+                        <Grid item md={5} sx={{ display: { xs: 'none', md: 'block' } }}>
+                            <div className="cp-sticky-panel">
+                                <img
+                                    src={hoverImage || CupcakeMain}
+                                    alt="Featured cupcake"
+                                    className={`cp-sticky-img${hoverImage ? ' active' : ''}`}
+                                />
+                                {!hoverImage && (
+                                    <div className="cp-sticky-hint">
+                                        <span>Hover a cupcake to preview</span>
+                                    </div>
+                                )}
                             </div>
                         </Grid>
-                        }
+                    )}
 
                 </Grid>
-                
-
             </section>
-        </div>
-    )
-}
 
+        </div>
+    );
+}
 
 export default CupcakePage;

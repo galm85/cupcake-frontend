@@ -1,71 +1,105 @@
 import * as React from 'react';
-import {Grid} from '@mui/material';
+import { Grid } from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux';
 import { Category, State } from '../utils/types';
 import { getAllCategories } from '../redux/actions/categories.actions';
 import CategoryCard from '../components/cards/categoryCard';
 import BreadCrumbs, { BreadCrumbsLink } from '../components/Breadcrumbs';
 
+import MenuBanner from '../assets/menu.jpg';
 
+const MenuPage: React.FC = () => {
 
-const MenuPage:React.FC = ()=>{
+    const dispatch: any = useDispatch();
+    const { categories } = useSelector((state: State) => state.categoriesReducer);
+    const [hoverImage, setHoverImage] = React.useState<string>('');
+    const [isDesktop, setIsDesktop] = React.useState(false);
 
-    const dispatch:any = useDispatch();
-    const {categories} = useSelector((state:State)=>state.categoriesReducer)
-    const [hoverImage,setHoverImage] = React.useState<string>('./images/menu.jpg');
-    const hoverRef = React.useRef<any>(null);
+    const breadLinks: BreadCrumbsLink[] = [
+        { label: 'Home', link: '/' },
+    ];
 
-    const breadLinks:BreadCrumbsLink[] = [
-        {label:'home',link:'/'},
-        
-    ]
-
-    React.useEffect(()=>{
+    React.useEffect(() => {
         dispatch(getAllCategories());
-    },[])
-
-
-  
-
-    const handleHover = (image:string):void=>{
-       
-        hoverRef.current.style.opacity = 0;
-        setTimeout(()=>{
-            setHoverImage(image);
-        },300)
-        setTimeout(()=>{
-            hoverRef.current.style.opacity = 1;
-
-        },500)
-       
-       
-        
-       
-    }
-
+        setIsDesktop(window.innerWidth > 960);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
 
     return (
-       <div className="menu-page">
-           <BreadCrumbs links={breadLinks} currentPage="menu" />
-           <h1 className='page-title'>Our Menu</h1>
-           <Grid container className="manu-page-grid-container" >
-               <Grid item xs={12} md={8}>
-                   <Grid container columnSpacing={8} rowSpacing={2}>
-                            {categories && categories.map((category:Category)=>(
-                            <Grid item xs={12} sm={5} key={category._id}>
-                                <CategoryCard   category={category} fn={handleHover} />
-                            </Grid>
+        <div className="menu-page">
+
+            {/* ════════════════════════════════
+                HERO
+            ════════════════════════════════ */}
+            <div className="mp-hero">
+                <img src={MenuBanner} alt="Our menu" />
+                <div className="mp-hero-overlay" />
+                <div className="mp-hero-content">
+                    <BreadCrumbs links={breadLinks} currentPage="Menu" />
+                    <h1>Our Menu</h1>
+                    <p>250+ dishes made fresh from scratch, every single day.</p>
+                </div>
+            </div>
+
+            {/* ════════════════════════════════
+                BROWSE
+            ════════════════════════════════ */}
+            <div className="mp-browse">
+
+                <div className="mp-browse-header">
+                    <div>
+                        <span className="hp-label">Browse</span>
+                        <h2>All Categories</h2>
+                    </div>
+                    {categories && (
+                        <p className="mp-count">
+                            {categories.length} {categories.length === 1 ? 'category' : 'categories'}
+                        </p>
+                    )}
+                </div>
+
+                <Grid container spacing={4} alignItems="flex-start">
+
+                    {/* ── Category grid ── */}
+                    <Grid item xs={12} md={8}>
+                        <Grid container spacing={2}>
+                            {categories && categories.map((category: Category) => (
+                                <Grid
+                                    item xs={12} sm={6} md={4}
+                                    key={category._id}
+                                    className="mp-cat-item"
+                                    onMouseEnter={() => setHoverImage(category.image)}
+                                    onMouseLeave={() => setHoverImage('')}
+                                >
+                                    <CategoryCard category={category} fn={setHoverImage} />
+                                </Grid>
                             ))}
+                        </Grid>
                     </Grid>
 
-               </Grid>
-               <Grid item xs={12} md={4} className="manu-page-hover-image" >
-                    <img ref={hoverRef}  src={hoverImage}  alt=""  />
-               </Grid>
-           </Grid>
-       </div>
-    )
-}
+                    {/* ── Sticky preview panel (desktop only) ── */}
+                    {isDesktop && (
+                        <Grid item md={4} sx={{ display: { xs: 'none', md: 'block' } }}>
+                            <div className="mp-sticky-panel">
+                                <img
+                                    src={hoverImage || MenuBanner}
+                                    alt="Category preview"
+                                    className={`mp-sticky-img${hoverImage ? ' active' : ''}`}
+                                />
+                                {!hoverImage && (
+                                    <div className="mp-sticky-hint">
+                                        <span>Hover a category to preview</span>
+                                    </div>
+                                )}
+                            </div>
+                        </Grid>
+                    )}
 
+                </Grid>
+            </div>
+
+        </div>
+    );
+};
 
 export default MenuPage;

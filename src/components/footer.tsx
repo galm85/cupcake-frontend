@@ -1,7 +1,5 @@
-import { Grid } from '@mui/material';
 import * as React from 'react';
 import { Link } from 'react-router-dom';
-
 import FacebookIcon from '@mui/icons-material/Facebook';
 import InstagramIcon from '@mui/icons-material/Instagram';
 import TwitterIcon from '@mui/icons-material/Twitter';
@@ -9,66 +7,63 @@ import MusicNoteIcon from '@mui/icons-material/MusicNote';
 import LegalDialog from './dialogs/legalDialog';
 import { cookiePolicy, privacyPolicy, termOfUse } from '../utils/legalData';
 
-const Footer:React.FC = ()=>{
-    return(
-       <div className="footer">
-           <Grid container spacing={3} style={{padding:'50px 200px',display:'flex',justifyContent:'space-between'}}>
-               <Grid item xs={12} md={3}>
-                  <div className="footer-information">
-                      <h3>The CupCake Factory</h3>
-                      <p>Lorem ipsum dolor sit amet consectetur.</p>
-                  </div>
-               </Grid>
-               <Grid item xs={12} md={5}>
-                  <div className="footer-navigation">
-                      <Grid container style={{display:'flex',justifyContent:'space-between'}}>
-                          <Grid item xs={6} style={{display:'flex',flexDirection:'column'}}>
-                            <Link to='/'>Home</Link>
-                            <Link to='/cupcakes'>Cupcakes</Link>
-                            <Link to='/menu'>Menu</Link>
-                          </Grid>
-                          <Grid item xs={6} style={{display:'flex',flexDirection:'column'}}>
-                            <Link to='/restaurants'>Restaurants</Link>
-                            <Link to='/careers'>Careers</Link>
-                          </Grid>
-                      </Grid>
-                  </div>
-               </Grid>
-               <Grid item xs={12} md={2}>
-                   <footer className="social-media">
-                       <Link to='#'><FacebookIcon fontSize='large'/></Link>
-                       <Link to='#'><InstagramIcon fontSize='large'/></Link>
-                       <Link to='#'><TwitterIcon fontSize='large'/></Link>
-                       <Link to='#'><MusicNoteIcon fontSize='large'/></Link>
-                   </footer>
-               </Grid>
-            
-           </Grid>
+const Footer: React.FC = () => {
+    return (
+        <footer className="footer">
 
+            <div className="footer-main">
 
-           <Grid container>
-               <Grid item xs={12}>
-                   <div className="legal-items">
-                        <LegalDialog legalData={termOfUse} />
-                        <p>|</p>
-                        <LegalDialog legalData={privacyPolicy}/>
-                        <p>|</p>
-                        <LegalDialog legalData={cookiePolicy}/>
-                        
-                   </div>
-               </Grid>
-           </Grid>
+                {/* Brand column */}
+                <div className="footer-brand">
+                    <h3>The CupCake Factory</h3>
+                    <p>
+                        Handcrafted with love, baked fresh daily. Over 50 legendary flavors
+                        made from scratch — because every bite should feel like a celebration.
+                    </p>
+                    <div className="footer-social">
+                        <Link to='#' aria-label="Facebook"><FacebookIcon /></Link>
+                        <Link to='#' aria-label="Instagram"><InstagramIcon /></Link>
+                        <Link to='#' aria-label="Twitter"><TwitterIcon /></Link>
+                        <Link to='#' aria-label="TikTok"><MusicNoteIcon /></Link>
+                    </div>
+                </div>
 
+                {/* Explore column */}
+                <div className="footer-col">
+                    <h4>Explore</h4>
+                    <Link to='/'>Home</Link>
+                    <Link to='/cupcakes'>Our Cupcakes</Link>
+                    <Link to='/menu'>Full Menu</Link>
+                    <Link to='/restaurants'>Restaurants</Link>
+                </div>
 
-           <Grid container>
-               <Grid item xs={12}>
-                   <div className="author-information">
-                        <p> The CupCake Factory | <a href="https://www.galwebdev.com" target="_blank">GWD</a> | {new Date().getFullYear()} &copy; </p>
-                   </div>
-               </Grid>
-           </Grid>
-       </div>
-    )
+                {/* Company column */}
+                <div className="footer-col">
+                    <h4>Company</h4>
+                    <Link to='/about-us'>About Us</Link>
+                    <Link to='/careers'>Careers</Link>
+                    <Link to='/login'>Sign In</Link>
+                    <Link to='/register'>Create Account</Link>
+                </div>
+
+            </div>
+
+            {/* Bottom bar */}
+            <div className="footer-bottom">
+                <p className="footer-copy">
+                    © {new Date().getFullYear()} The CupCake Factory. All rights reserved.
+                </p>
+                <div className="footer-legal">
+                    <LegalDialog legalData={termOfUse} />
+                    <span className="footer-legal-dot" />
+                    <LegalDialog legalData={privacyPolicy} />
+                    <span className="footer-legal-dot" />
+                    <LegalDialog legalData={cookiePolicy} />
+                </div>
+            </div>
+
+        </footer>
+    );
 }
 
 export default Footer;
